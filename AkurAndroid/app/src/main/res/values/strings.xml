@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">AkurAndroid</string>
     <string name="login">Login</string>
+    <string name="sign_in">Please sign-in to your account and start the adventure</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
 </resources>
