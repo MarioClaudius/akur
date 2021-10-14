@@ -85,6 +85,17 @@
             android:text="@string/password"
             android:fontFamily="@font/comfortaa"/>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Forgot Password?"
+            android:fontFamily="@font/comfortaa"
+            android:textSize="16sp"
+            android:layout_marginLeft="155dp"
+            android:textColor="@color/hijau_logo"/>
+<!--            android:onClick=""-->
+
+
     </LinearLayout>
 
     <EditText
@@ -98,5 +109,58 @@
         tools:text="password"
         android:padding="10dp"/>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp">
+
+        <CheckBox
+            android:id="@+id/checkbox"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Remember me"
+            android:fontFamily="@font/comfortaa"
+            android:layout_marginLeft="5dp"
+            android:layout_marginEnd="@+id/checkbox"/>
+    </LinearLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="@color/hijau_logo"
+        android:text="@string/login"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="40dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New on our platform?"
+            android:fontFamily="@font/comfortaa"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Create an account"
+            android:fontFamily="@font/comfortaa"
+            android:layout_marginLeft="7dp"
+            android:textColor="@color/hijau_logo"/>
+<!--            android:onClick=""/>-->
+
+
+    </LinearLayout>
 
 </LinearLayout>
