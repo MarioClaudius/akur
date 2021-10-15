@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         tvForgotPassword = findViewById(R.id.tv_forgot_password);
         edtPassword = findViewById(R.id.edt_password);
         checkBox = findViewById(R.id.checkbox);
+        tvRememberMe = findViewById(R.id.tv_remember_me);
         login = findViewById(R.id.btn_login);
         tvNewOnPlatform = findViewById(R.id.tv_new_on_platform);
         tvCreateAccount = findViewById(R.id.tv_create_account);
