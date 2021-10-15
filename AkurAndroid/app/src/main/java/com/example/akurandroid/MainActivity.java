@@ -2,15 +2,14 @@ package com.example.akurandroid;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.media.Image;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity {
     private EditText edtEmail;
@@ -44,5 +43,12 @@ public class MainActivity extends AppCompatActivity {
         login = findViewById(R.id.btn_login);
         tvNewOnPlatform = findViewById(R.id.tv_new_on_platform);
         tvCreateAccount = findViewById(R.id.tv_create_account);
+
+        tvCreateAccount.setOnClickListener(this::goToRegisterPage);
+    }
+
+    public void goToRegisterPage(View v){
+        Intent registerIntent = new Intent(MainActivity.this, RegisterPage.class);
+        startActivity(registerIntent);
     }
 }

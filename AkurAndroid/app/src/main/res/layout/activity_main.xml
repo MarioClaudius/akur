@@ -168,8 +168,12 @@
             android:text="@string/create_an_account"
             android:fontFamily="@font/comfortaa"
             android:layout_marginStart="7dp"
-            android:textColor="@color/hijau_logo"/>
-<!--            android:onClick=""/>-->
+            android:textColor="@color/hijau_logo"
+            android:clickable="true"
+            android:onClick="goToRegisterPage"
+            tools:ignore="UsingOnClickInXml"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackgroundBorderless"/>
 
 
     </LinearLayout>
