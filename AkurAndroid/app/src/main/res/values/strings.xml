@@ -8,4 +8,11 @@
     <string name="remember_me">Remember me</string>
     <string name="new_on_our_platform">New on our platform?</string>
     <string name="create_an_account">Create an account</string>
+    <string name="register">Register</string>
+    <string name="sign_up_detail">Please sign-up your account</string>
+    <string name="username">Username</string>
+    <string name="agree">I agree to</string>
+    <string name="privacy_policy_terms"><![CDATA[privacy policy & terms]]></string>
+    <string name="sign_up">Sign Up</string>
+    <string name="term_of_service">By signing up, you agree to Photo\'s Terms of Service and Privacy Policy</string>
 </resources>
