@@ -10,9 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AkurAndroid">
         <activity android:name=".RegisterPage"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/Theme.AkurAndroid.NoActionBar"></activity>
         <activity android:name=".MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/Theme.AkurAndroid.NoActionBar">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
