@@ -1,0 +1,13 @@
+CREATE DATABASE akur;
+
+\c akur
+
+CREATE TABLE akun(
+username text NOT NULL,
+email text NOT NULL,
+password text NOT NULL
+);
+
+INSERT INTO akun VALUES ('marioc', 'mario@gmail.com', '123456');
+
+SELECT * FROM akun;
