@@ -1,3 +1,4 @@
+const http = require('http');
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
@@ -28,36 +29,50 @@ const client = new Client({
   
   app.get("/show", async (req, res) => {
     try {
-        const allTodos = await client.query("SELECT * FROM akun ORDER BY username ASC");
+        const allTodos = await client.query("SELECT * FROM akun");
         res.json(allTodos.rows);
     } catch (err) {
         console.error(err.message);
     }
   });
 
-  app.post('/insert', function(req, res) {
-    const query = `
-                    INSERT INTO akur (username, email, password)
-                    VALUES ('${req.body.username}', '${req.body.email}', '${req.body.password}')
-                `;
+  app.post('/insert', async(req, res) => {
+    try {
+      const username = req.body.username;
+      const email  = req.body.email;
+      const password  = req.body.password;
+
+      const todo = await client.query(`INSERT INTO akun (username, email, password) VALUES ('${username}', '${email}', '${password}')`);
+      
+      console.log("Berhasil di insert bro");
+      res.json(todo.rows[0]);
+    } catch (err) {
+      // console.log(req.body);
+      console.error(err.message);
+      console.log("Ga masuk cok");
+    }
+    // const query = `
+    //                 INSERT INTO akun (username, email, password)
+    //                 VALUES (${req.body.username}, ${req.body.email}, ${req.body.password})
+    //             `;
   
-    client.query(query, (err, results) => {
-        if (err) {
-            res.statusCode = 404;
-            console.log("Data tidak berhasil");
-            console.error(err);
-            res.send(null);
-            return;
-        }
-        console.log(`Data [${req.body.username}, ${req.body.email}, ${req.body.password}] berhasil di-insert.`);
-        res.send(`Data [${req.body.username}, ${req.body.email}, ${req.body.password}] berhasil di-insert.`);
-    });
+    // client.query(query, (err, results) => {
+    //     if (err) {
+    //         res.statusCode = 404;
+    //         console.log("Data tidak berhasil");
+    //         console.error(err);
+    //         res.send(null);
+    //         return;
+    //     }
+    //     console.log(`Data [${req.body.username}, ${req.body.email}, ${req.body.password}] berhasil di-insert.`);
+    //     res.send(`Data [${req.body.username}, ${req.body.email}, ${req.body.password}] berhasil di-insert.`);
+    // });
   });
   
   app.put("/update/:username", async (req, res) => {
     try {
         const { id } = req.params;
-        const todo = await client.query(`UPDATE akun SET username = '${req.body.email}', password = '${req.body.password}' WHERE username= $1`, [
+        const todo = await client.query(`UPDATE akun SET email = '${req.body.email}', password = '${req.body.password}' WHERE username= $1`, [
             username
         ]);
   
@@ -65,4 +80,8 @@ const client = new Client({
     } catch (err) {
         console.error(err.message);
     }
+  });
+
+  app.listen(port, () => {
+    console.log(`Program sudah berjalan pada port ${port}`);
   });

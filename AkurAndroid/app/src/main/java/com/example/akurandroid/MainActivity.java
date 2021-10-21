@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView tvRememberMe;
     private TextView tvNewOnPlatform;
     private TextView tvCreateAccount;
+    private TextView tvTest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
         login = findViewById(R.id.btn_login);
         tvNewOnPlatform = findViewById(R.id.tv_new_on_platform);
         tvCreateAccount = findViewById(R.id.tv_create_account);
+        tvTest = findViewById(R.id.tv_test);
 
         tvCreateAccount.setOnClickListener(this::goToRegisterPage);
         login.setOnClickListener(this::checkLoginCredential);
@@ -72,6 +74,21 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call<List<AkurAccount>> call, Response<List<AkurAccount>> response) {
                 if(response.isSuccessful()){
                     list = response.body();
+                    String emailInput = edtEmail.getText().toString().trim();
+                    String passwordInput = edtPassword.getText().toString().trim();
+//                    String line = "";
+                    for(AkurAccount akun : list){
+//                        line += "Username : " + akun.getUsername() + "\n";
+//                        line += "Password : " + akun.getPassword() + "\n";
+//                        line += "Email : " + akun.getEmail() + "\n";
+//                        tvTest.setText(line);
+                        if(akun.getEmail().equals(emailInput) && akun.getPassword().equals(passwordInput)){
+                            Intent moveAkur = new Intent(MainActivity.this, RegisterPage.class);
+                            startActivity(moveAkur);
+                            return;
+                        }
+                    }
+                    Toast.makeText(MainActivity.this, "Email / Password tidak cocok!", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -81,19 +98,6 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "Gagal", Toast.LENGTH_SHORT).show();
             }
         });
-
-        String emailInput = edtEmail.getText().toString().trim();
-        String passwordInput = edtPassword.getText().toString().trim();
-        boolean isMatch = false;
-
-        for(AkurAccount akun : list){
-            if(akun.getEmail().equals(emailInput) && akun.getPassword().equals(passwordInput)){
-                Intent moveAkur = new Intent(MainActivity.this, RegisterPage.class);
-                startActivity(moveAkur);
-                return;
-            }
-        }
-        Toast.makeText(MainActivity.this, "Email / Password tidak cocok!", Toast.LENGTH_SHORT).show();
     }
 
     public void goToRegisterPage(View v){

@@ -3,8 +3,8 @@ CREATE DATABASE akur;
 \c akur
 
 CREATE TABLE akun(
-username text NOT NULL,
-email text NOT NULL,
+username text UNIQUE NOT NULL,
+email text UNIQUE NOT NULL,
 password text NOT NULL
 );
 
