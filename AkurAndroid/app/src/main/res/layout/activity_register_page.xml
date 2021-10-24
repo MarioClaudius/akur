@@ -160,7 +160,8 @@
         android:layout_marginRight="16dp"
         android:layout_marginTop="8dp"
         android:textColor="@color/white"
-        android:backgroundTint="@color/hijau_logo"
+        android:backgroundTint="@color/button_color"
+        android:enabled="false"
         android:text="@string/sign_up"/>
 
     <TextView

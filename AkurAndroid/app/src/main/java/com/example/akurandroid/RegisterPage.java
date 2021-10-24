@@ -2,6 +2,7 @@ package com.example.akurandroid;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -51,8 +52,17 @@ public class RegisterPage extends AppCompatActivity {
         tvPrivacyPolicy = findViewById(R.id.privacy_policy);
         signup = findViewById(R.id.btn_signup);
         tvTermOfService = findViewById(R.id.tv_term_of_service);
+        checkBox.setOnClickListener(this::isChecked);
         signup.setOnClickListener(this::createAccount);
+    }
 
+    public void isChecked(View v){
+        if(checkBox.isChecked()){
+            signup.setEnabled(true);
+        }
+        else{
+            signup.setEnabled(false);
+        }
     }
 
     public void createAccount(View v){
