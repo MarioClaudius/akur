@@ -70,7 +70,7 @@ public class RegisterPage extends AppCompatActivity {
         String emailInput = edtEmail.getText().toString().trim();
         String passwordInput = edtPassword.getText().toString().trim();
         boolean isMatch = false;
-        for(AkurAccount a : MainActivity.list){
+        for(AkurAccount a : LoginPage.list){
             if(a.getUsername().equals(usernameInput) || a.getEmail().equals(emailInput)){
                 isMatch = true;
             }
@@ -82,7 +82,7 @@ public class RegisterPage extends AppCompatActivity {
                 @Override
                 public void onResponse(Call<AkurAccount> call, Response<AkurAccount> response) {
                     AkurAccount akun = new AkurAccount(usernameInput, emailInput, passwordInput);
-                    MainActivity.list.add(akun);
+                    LoginPage.list.add(akun);
                     Toast.makeText(RegisterPage.this, "Akun berhasil dibuat!", Toast.LENGTH_SHORT).show();
 
                 }

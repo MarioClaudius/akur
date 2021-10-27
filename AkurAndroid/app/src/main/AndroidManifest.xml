@@ -12,12 +12,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AkurAndroid"
         android:usesCleartextTraffic="true">
-        <activity android:name=".SplashActivity"
+        <activity android:name=".LoginPage"></activity>
+        <activity
+            android:name=".SplashActivity"
             android:theme="@style/Theme.AkurAndroid.NoActionBar">
             <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN" />
 
-            <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
@@ -25,7 +27,7 @@
             android:theme="@style/Theme.AkurAndroid.NoActionBar" />
         <activity
             android:name=".MainActivity"
-            android:theme="@style/Theme.AkurAndroid.NoActionBar"/>
+            android:theme="@style/Theme.AkurAndroid.NoActionBar" />
     </application>
 
 </manifest>
