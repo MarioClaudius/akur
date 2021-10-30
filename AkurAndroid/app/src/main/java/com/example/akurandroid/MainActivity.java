@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,6 +15,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationBarView;
 
 public class MainActivity extends AppCompatActivity implements NavigationBarView.OnItemSelectedListener, View.OnClickListener {
+    public static final String EXTRA_SCAN_RESULT = "";
     BottomNavigationView bottomNavigationView;
     FloatingActionButton floatingButton;
 
@@ -30,6 +32,14 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
         floatingButton.setOnClickListener(this);
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                 new HomeFragment()).commit();
+
+//        if(!EXTRA_SCAN_RESULT.equals("")){
+//            FragmentManager fm = getSupportFragmentManager();
+//            HomeFragment fragment = (HomeFragment) fm.findFragmentById(R.id.fragment_container);
+//            String result = getIntent().getStringExtra(EXTRA_SCAN_RESULT);
+//            fragment.setText(result);
+//        }
+
     }
 
     @Override
@@ -54,8 +64,10 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
 
     @Override
     public void onClick(View v) {
-        FragmentManager fm = getSupportFragmentManager();
-        HomeFragment fragment = (HomeFragment) fm.findFragmentById(R.id.fragment_container);
-        fragment.setText();
+        Intent intent = new Intent(MainActivity.this, ScanActivity.class);
+        startActivity(intent);
+//        FragmentManager fm = getSupportFragmentManager();
+//        HomeFragment fragment = (HomeFragment) fm.findFragmentById(R.id.fragment_container);
+//        fragment.setText();
     }
 }
