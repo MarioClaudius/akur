@@ -19,7 +19,10 @@ public class HomeFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_home, container, false);
         tv = v.findViewById(R.id.tv_home_fragment);
         String result = getActivity().getIntent().getStringExtra("EXTRA_SCAN_RESULT");
-        tv.setText(result);
+        //tv.setText(result);
+        if(result != null){
+            tv.setText(result);
+        }
         return v;
     }
 

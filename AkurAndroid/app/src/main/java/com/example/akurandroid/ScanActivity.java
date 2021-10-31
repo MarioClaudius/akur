@@ -61,7 +61,7 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
         //receive RawResult => nerima dari scannernya
         if(rawResult.getText() != null){
             Intent backWithDataIntent = new Intent(ScanActivity.this, MainActivity.class);
-            backWithDataIntent.putExtra(MainActivity.EXTRA_SCAN_RESULT, rawResult.getText());
+            backWithDataIntent.putExtra(/*MainActivity.EXTRA_SCAN_RESULT*/ "EXTRA_SCAN_RESULT", rawResult.getText());
             startActivity(backWithDataIntent);
         }
 //        txtResult.setText(rawResult.getText());
