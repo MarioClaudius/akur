@@ -8,6 +8,24 @@
         android:icon="@drawable/ic_home"/>
 
     <item
+        android:id="@+id/nav_track"
+        android:title="Track"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/ic_logo_akur_svg" />
+
+    <item
+        android:id="@+id/holder"
+        android:title=""
+        app:showAsAction="ifRoom"
+        android:enabled="false"/>
+
+    <item
+        android:id="@+id/nav_history"
+        android:title="History"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/ic_history"/>
+
+    <item
         android:id="@+id/nav_account"
         android:title="Account"
         app:showAsAction="ifRoom"

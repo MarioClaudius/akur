@@ -56,6 +56,14 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
             case R.id.nav_account:
                 selectedFragment = new AccountFragment();
                 break;
+
+            case R.id.nav_history:
+                selectedFragment = new HistoryFragment();
+                break;
+
+            case R.id.nav_track:
+                selectedFragment = new TrackFragment();
+                break;
         }
 
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
