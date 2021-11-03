@@ -16,7 +16,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AkurAndroid"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ScanActivity"></activity>
+        <activity android:name=".ChangePasswordActivity"></activity>
+        <activity android:name=".EditShipmentActivity" />
+        <activity android:name=".EditProfileActivity" />
+        <activity android:name=".ScanActivity" />
         <activity android:name=".LoginPage" />
         <activity
             android:name=".SplashActivity"

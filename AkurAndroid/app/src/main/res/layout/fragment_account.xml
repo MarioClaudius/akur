@@ -1,13 +1,254 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Account"
+            android:textSize="35sp"
+            android:textColor="@color/hijau_logo"
+            android:fontFamily="@font/comfortaa"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="20dp"
+            android:textStyle="bold"/>
+    </LinearLayout>
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Account Fragment"
-        android:textSize="30sp"
-        android:layout_centerInParent="true"/>
+        android:text="Details Account :"
+        android:textSize="22sp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="10dp"
+        android:fontFamily="@font/comfortaa"/>
 
-</RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/store_logo"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/toko_bagus_alip"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="16dp"
+            android:layout_centerVertical="true"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/store_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textColor="@color/hijau_logo"
+                android:text="Toko Bagusalip"
+                android:fontFamily="@font/comfortaa"
+                android:layout_marginTop="18dp"/>
+
+            <TextView
+                android:id="@+id/store_join"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Joined 2015"
+                android:textColor="@color/black"
+                android:fontFamily="@font/comfortaa"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="30dp">
+
+            <Button
+                android:id="@+id/btn_edit_profile"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:backgroundTint="@color/white"
+                android:clickable="true"
+                android:stateListAnimator="@null"/>
+
+            <ImageView
+                android:id="@+id/logo_edit_profile"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:src="@drawable/logo_user_profile"
+                android:layout_marginStart="6dp"
+                android:layout_centerVertical="true"/>
+
+            <TextView
+                android:id="@+id/tv_edit_profile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/logo_edit_profile"
+                android:text="Edit Profile"
+                android:textColor="@color/hijau_logo"
+                android:fontFamily="@font/comfortaa"
+                android:textSize="16sp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="35dp"
+                android:layout_centerVertical="true"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_arrow_right"
+                android:layout_alignParentRight="true"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="10dp">
+
+            <Button
+                android:id="@+id/btn_edit_shipment"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:backgroundTint="@color/white"
+                android:clickable="true"
+                android:stateListAnimator="@null"/>
+
+            <ImageView
+                android:id="@+id/logo_edit_shipment"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@drawable/logo_akur"
+                android:layout_centerVertical="true"/>
+
+            <TextView
+                android:id="@+id/tv_edit_shipment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/logo_edit_shipment"
+                android:text="Edit Shipment"
+                android:textColor="@color/hijau_logo"
+                android:fontFamily="@font/comfortaa"
+                android:textSize="16sp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="35dp"
+                android:layout_centerVertical="true"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_arrow_right"
+                android:layout_alignParentRight="true"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="10dp">
+
+            <Button
+                android:id="@+id/btn_change_password"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:backgroundTint="@color/white"
+                android:clickable="true"
+                android:stateListAnimator="@null"/>
+
+            <ImageView
+                android:id="@+id/logo_change_password"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:src="@drawable/logo_key"
+                android:layout_marginStart="6dp"
+                android:layout_centerVertical="true"/>
+
+            <TextView
+                android:id="@+id/tv_change_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/logo_change_password"
+                android:text="Change Password"
+                android:textColor="@color/hijau_logo"
+                android:fontFamily="@font/comfortaa"
+                android:textSize="16sp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="35dp"
+                android:layout_centerVertical="true"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_arrow_right"
+                android:layout_alignParentRight="true"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="10dp">
+
+            <Button
+                android:id="@+id/btn_logout"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:backgroundTint="@color/white"
+                android:clickable="true"
+                android:stateListAnimator="@null"/>
+
+            <ImageView
+                android:id="@+id/logo_logout"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:src="@drawable/logo_logout"
+                android:layout_marginStart="6dp"
+                android:layout_centerVertical="true"/>
+
+            <TextView
+                android:id="@+id/tv_logout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/logo_logout"
+                android:text="Logout"
+                android:textColor="@color/hijau_logo"
+                android:fontFamily="@font/comfortaa"
+                android:textSize="16sp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="35dp"
+                android:layout_centerVertical="true"/>
+
+        </RelativeLayout>
+    </LinearLayout>
+
+
+
+
+</LinearLayout>
