@@ -4,11 +4,126 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".EditProfileActivity">
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="EDIT PROFILE ACTIVITY"/>
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal">
 
+        <ImageButton
+            android:id="@+id/back_btn_edit_profile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_arrow_left"
+            android:backgroundTint="@color/white"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/edit_profile"
+            android:fontFamily="@font/comfortaa"
+            android:textColor="@color/hijau_logo"
+            android:textStyle="bold"
+            android:textSize="28sp"
+            android:gravity="center"
+            android:layout_marginEnd="35dp"
+            android:layout_marginTop="3dp"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Username :"
+            android:layout_marginTop="20dp"
+            android:textSize="18sp"
+            android:fontFamily="@font/comfortaa"
+            android:textColor="@color/black"/>
+
+        <EditText
+            android:id="@+id/edt_username_editprofile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/stroke_box"
+            android:inputType="textEmailAddress"
+            android:backgroundTint="@color/background_edittext_abu"
+            android:lines="1"
+            android:textColor="@color/hijau_logo"
+            android:fontFamily="@font/comfortaa"
+            tools:text="Toko Bagusalip"
+            android:padding="10dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Number Phone :"
+            android:textSize="18sp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/comfortaa"
+            android:textColor="@color/black"/>
+
+        <EditText
+            android:id="@+id/edt_numberphone_editprofile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/stroke_box"
+            android:inputType="textEmailAddress"
+            android:backgroundTint="@color/background_edittext_abu"
+            android:lines="1"
+            android:textColor="@color/hijau_logo"
+            android:fontFamily="@font/comfortaa"
+            tools:text="+62 878 3829 3423"
+            android:padding="10dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Photo Profile:"
+            android:textSize="18sp"
+            android:fontFamily="@font/comfortaa"
+            android:textColor="@color/black"
+            android:layout_marginTop="16dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/store_logo_editprofile"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/toko_bagus_alip"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="16dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Edit"
+                android:fontFamily="@font/comfortaa"
+                android:textColor="@color/hijau_logo"
+                android:textStyle="bold"
+                android:layout_marginTop="5dp"
+                android:clickable="true"/>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_save_editprofile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Save"
+            android:textColor="@color/white"
+            android:layout_marginTop="16dp"/>
+
+    </LinearLayout>
 </LinearLayout>
