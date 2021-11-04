@@ -18,7 +18,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_arrow_left"
-            android:backgroundTint="@color/white"/>
+            android:backgroundTint="@color/white" />
 
         <TextView
             android:layout_width="match_parent"
@@ -71,18 +71,33 @@
             android:fontFamily="@font/comfortaa"
             android:textColor="@color/black"/>
 
-        <EditText
-            android:id="@+id/edt_numberphone_editprofile"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/stroke_box"
-            android:inputType="textEmailAddress"
-            android:backgroundTint="@color/background_edittext_abu"
-            android:lines="1"
-            android:textColor="@color/hijau_logo"
-            android:fontFamily="@font/comfortaa"
-            tools:text="+62 878 3829 3423"
-            android:padding="10dp"/>
+            android:orientation="horizontal"
+            android:background="@color/background_edittext_abu">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/bendera"
+                android:layout_marginStart="10dp"
+                android:layout_gravity="center_vertical"/>
+
+            <EditText
+                android:id="@+id/edt_numberphone_editprofile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/stroke_box"
+                android:inputType="textEmailAddress"
+                android:backgroundTint="@color/background_edittext_abu"
+                android:lines="1"
+                android:textColor="@color/hijau_logo"
+                android:fontFamily="@font/comfortaa"
+                tools:text="+62 878 3829 3423"
+                android:padding="10dp"/>
+        </LinearLayout>
+
 
         <TextView
             android:layout_width="match_parent"
@@ -107,6 +122,7 @@
                 android:layout_marginEnd="16dp"/>
 
             <TextView
+                android:id="@+id/tv_edit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Edit"

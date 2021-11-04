@@ -38,6 +38,13 @@ public class AccountFragment extends Fragment implements View.OnClickListener {
         btnEditShipment.setOnClickListener(this);
         btnChangePassword.setOnClickListener(this);
         btnLogout.setOnClickListener(this);
+        Bundle bundle = getArguments();
+        if(bundle != null){
+            String storeName = bundle.getString("store name");
+            if(storeName != null){
+                tvStoreName.setText(storeName);
+            }
+        }
         return v;
     }
 
