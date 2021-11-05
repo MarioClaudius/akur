@@ -1,6 +1,8 @@
 package com.example.akurandroid;
 
+import android.content.BroadcastReceiver;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,6 +24,23 @@ public class AccountFragment extends Fragment implements View.OnClickListener {
     private Button btnEditShipment;
     private Button btnChangePassword;
     private Button btnLogout;
+    private String namaToko;
+
+    public AccountFragment(){
+
+    }
+
+    public static AccountFragment newInstance(String storeName){
+        AccountFragment fragment = new AccountFragment();
+        Bundle args = new Bundle();
+        args.putString("store", storeName);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+    public void onCreate(Bundle savedInstanceState){
+        super.onCreate(savedInstanceState);
+    }
 
     @Nullable
     @Override
@@ -38,13 +57,10 @@ public class AccountFragment extends Fragment implements View.OnClickListener {
         btnEditShipment.setOnClickListener(this);
         btnChangePassword.setOnClickListener(this);
         btnLogout.setOnClickListener(this);
-        Bundle bundle = getArguments();
-        if(bundle != null){
-            String storeName = bundle.getString("store name");
-            if(storeName != null){
-                tvStoreName.setText(storeName);
-            }
+        if(getArguments() != null){
+            this.namaToko = getArguments().getString("store");
         }
+        tvStoreName.setText(this.namaToko);
         return v;
     }
 
@@ -65,7 +81,8 @@ public class AccountFragment extends Fragment implements View.OnClickListener {
                 break;
 
             case R.id.btn_logout:
-                //intent = new Intent();
+                intent = new Intent(getActivity(), LoginPage.class);
+
                 break;
         }
         startActivity(intent);

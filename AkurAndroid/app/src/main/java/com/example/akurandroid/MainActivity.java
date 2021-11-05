@@ -19,6 +19,7 @@ import com.google.android.material.navigation.NavigationBarView;
 
 public class MainActivity extends AppCompatActivity implements NavigationBarView.OnItemSelectedListener, View.OnClickListener {
     public static final String EXTRA_SCAN_RESULT = "";
+    public static final String EXTRA_STORE_NAME = "NO NAME";
     BottomNavigationView bottomNavigationView;
     FloatingActionButton floatingButton;
 
@@ -36,6 +37,15 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                 new HomeFragment()).commit();
 
+        if(getIntent() != null){
+            String nama = getIntent().getStringExtra("EXTRA_STORE_NAME");
+            if(nama == null){
+                Log.d("MARIO1", "TIDAK ADA ISI");
+            }
+            else{
+                Log.d("MARIO2", nama);
+            }
+        }
 //        if(!EXTRA_SCAN_RESULT.equals("")){
 //            FragmentManager fm = getSupportFragmentManager();
 //            HomeFragment fragment = (HomeFragment) fm.findFragmentById(R.id.fragment_container);
@@ -54,7 +64,15 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
                 break;
 
             case R.id.nav_account:
-                selectedFragment = new AccountFragment();
+                String nama = getIntent().getStringExtra("EXTRA_STORE_NAME");
+                if(nama == null){
+                    AccountFragment fragment = AccountFragment.newInstance("No Name");
+                    selectedFragment = fragment;
+                }
+                else{
+                    AccountFragment fragment = AccountFragment.newInstance(nama);
+                    selectedFragment = fragment;
+                }
                 break;
 
             case R.id.nav_history:
@@ -79,5 +97,17 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
 //        FragmentManager fm = getSupportFragmentManager();
 //        HomeFragment fragment = (HomeFragment) fm.findFragmentById(R.id.fragment_container);
 //        fragment.setText();
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        String nama = getIntent().getStringExtra("EXTRA_STORE_NAME");
+        if(nama == null){
+            outState.putString("EXTRA_STORE_NAME", "No Name");
+        }
+        else{
+            outState.putString("EXTRA_STORE_NAME", nama);
+        }
     }
 }
