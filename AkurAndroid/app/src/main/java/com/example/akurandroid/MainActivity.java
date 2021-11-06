@@ -110,4 +110,8 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
             outState.putString("EXTRA_STORE_NAME", nama);
         }
     }
+
+    public void onBackPressed(){
+        moveTaskToBack(true);
+    }
 }
