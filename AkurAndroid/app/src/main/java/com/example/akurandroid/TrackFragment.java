@@ -27,6 +27,7 @@ public class TrackFragment extends Fragment {
         rvShipmentTrack.setLayoutManager(new LinearLayoutManager(v.getContext()));
         ListShipmentTrackAdapter listShipmentTrackAdapter = new ListShipmentTrackAdapter(list);
         rvShipmentTrack.setAdapter(listShipmentTrackAdapter);
+        //rvShipmentTrack.suppressLayout(true);
         return v;
     }
 }
