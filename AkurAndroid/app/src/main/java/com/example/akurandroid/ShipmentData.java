@@ -8,10 +8,18 @@ public class ShipmentData {
             "Si Cepat",
             "JNT",
             "Wahana",
-            "Ninja Express",
-            "Anteraja",
-            "ID Express",
-            "Lion Parcel"
+            "Ninja Express"//,
+//            "Anteraja",
+//            "ID Express",
+//            "Lion Parcel"
+    };
+
+    private static int[] shipmentLogo = {
+            R.drawable.jne,
+            R.drawable.sicepat,
+            R.drawable.jnt,
+            R.drawable.wahana,
+            R.drawable.ninjaexpress
     };
 
     static ArrayList<Shipment> getListData(){
@@ -19,6 +27,7 @@ public class ShipmentData {
         for(int pos = 0; pos < shipmentName.length; pos++){
             Shipment shipment = new Shipment();
             shipment.setName(shipmentName[pos]);
+            shipment.setLogo(shipmentLogo[pos]);
             list.add(shipment);
         }
         return list;

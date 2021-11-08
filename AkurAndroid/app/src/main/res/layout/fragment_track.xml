@@ -1,13 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:layout_marginBottom="85dp"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Track Fragment"
-        android:textSize="30sp"
-        android:layout_centerInParent="true"/>
+        android:orientation="vertical"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp">
 
+        <ImageView
+            android:layout_width="120dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="30dp"
+            android:scaleType="fitXY"
+            android:layout_gravity="center"
+            android:src="@drawable/logo_akur" />
+        
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Courier"
+            android:fontFamily="@font/karla_bold"
+            android:gravity="center"
+            android:textSize="30sp"
+            android:textColor="@color/hijau_logo"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_row_track"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:listitem="@layout/row_track"/>
+
+    </LinearLayout>
 </RelativeLayout>
