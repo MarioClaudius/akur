@@ -4,11 +4,52 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".EditShipmentActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/back_btn_edit_profile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_arrow_left"
+            android:backgroundTint="@color/white" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Edit Shipment"
+            android:fontFamily="@font/comfortaa"
+            android:textColor="@color/hijau_logo"
+            android:textStyle="bold"
+            android:textSize="28sp"
+            android:gravity="center"
+            android:layout_marginEnd="45dp"
+            android:layout_marginTop="3dp"/>
+    </LinearLayout>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="EDIT SHIPMENT ACTIVITY"/>
+        android:text="Choose the shipment delivery for your store."
+        android:fontFamily="@font/comfortaa"
+        android:textColor="@color/black"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginEnd="30dp"
+        android:textSize="18sp"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_edit_shipment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:listitem="@layout/row_edit_shipment"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical"/>
 
 </LinearLayout>
