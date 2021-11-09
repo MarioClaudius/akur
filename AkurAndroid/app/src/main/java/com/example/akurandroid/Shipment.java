@@ -3,6 +3,7 @@ package com.example.akurandroid;
 public class Shipment {
     private String name;
     private int logo;
+    private boolean appear;
 
     public String getName() {
         return name;
@@ -18,5 +19,13 @@ public class Shipment {
 
     public void setLogo(int logo) {
         this.logo = logo;
+    }
+
+    public boolean isAppear() {
+        return appear;
+    }
+
+    public void setAppear(boolean appear) {
+        this.appear = appear;
     }
 }

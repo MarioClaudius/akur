@@ -2,10 +2,10 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginBottom="85dp"
     xmlns:tools="http://schemas.android.com/tools">
 
     <LinearLayout
+        android:id="@+id/testestest"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -21,6 +21,7 @@
             android:src="@drawable/logo_akur" />
 
         <TextView
+            android:id="@+id/tv_testtest"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Courier"
@@ -31,11 +32,14 @@
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"/>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_row_track"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:listitem="@layout/row_track"/>
-
     </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_row_track"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/testestest"
+        android:layout_height="match_parent"
+        tools:listitem="@layout/row_track"
+        android:layout_marginBottom="85dp"/>
+
 </RelativeLayout>

@@ -3,6 +3,7 @@ package com.example.akurandroid;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
 
@@ -30,6 +31,15 @@ public class ListShipmentAdapter extends RecyclerView.Adapter<ListShipmentAdapte
         Shipment shipment = listShipment.get(position);
         holder.tvShipmentNumber.setText((position + 1) + ".");
         holder.tvShipmentName.setText(shipment.getName());
+        boolean isChecked = holder.shipmentSwitch.isChecked();
+//        if(isChecked){
+//            ShipmentData.shipmentAppear[position] = true;
+//            //EditShipmentActivity.isAppear[position] = true;
+//        }
+//        else{
+//            ShipmentData.shipmentAppear[position] = false;
+//           // EditShipmentActivity.isAppear[position] = false;
+//        }
     }
 
     @Override
@@ -49,4 +59,6 @@ public class ListShipmentAdapter extends RecyclerView.Adapter<ListShipmentAdapte
             shipmentSwitch = itemView.findViewById(R.id.item_edit_shipment_switch);
         }
     }
+
+
 }

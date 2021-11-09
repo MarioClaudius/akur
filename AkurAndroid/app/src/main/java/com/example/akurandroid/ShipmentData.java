@@ -8,10 +8,10 @@ public class ShipmentData {
             "Si Cepat",
             "JNT",
             "Wahana",
-            "Ninja Express"//,
-//            "Anteraja",
-//            "ID Express",
-//            "Lion Parcel"
+            "Ninja Express",
+            "Anteraja",
+            "ID Express",
+            "Lion Parcel"
     };
 
     private static int[] shipmentLogo = {
@@ -19,7 +19,21 @@ public class ShipmentData {
             R.drawable.sicepat,
             R.drawable.jnt,
             R.drawable.wahana,
-            R.drawable.ninjaexpress
+            R.drawable.ninjaexpress,
+            R.drawable.anteraja,
+            R.drawable.idexpress,
+            R.drawable.lionexpress
+    };
+
+    public static boolean[] shipmentAppear = {
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
     };
 
     static ArrayList<Shipment> getListData(){
@@ -28,6 +42,7 @@ public class ShipmentData {
             Shipment shipment = new Shipment();
             shipment.setName(shipmentName[pos]);
             shipment.setLogo(shipmentLogo[pos]);
+            shipment.setAppear(shipmentAppear[pos]);
             list.add(shipment);
         }
         return list;
