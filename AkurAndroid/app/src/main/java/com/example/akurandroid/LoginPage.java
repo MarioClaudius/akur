@@ -84,6 +84,9 @@ public class LoginPage extends AppCompatActivity {
 //                        tvTest.setText(line);
                         if(akun.getEmail().equals(emailInput) && akun.getPassword().equals(passwordInput)){
                             Intent moveAkur = new Intent(LoginPage.this, MainActivity.class);
+                            moveAkur.putExtra("username", akun.getUsername());
+                            moveAkur.putExtra("email", akun.getEmail());
+                            moveAkur.putExtra("password", akun.getPassword());
                             startActivity(moveAkur);
                             return;
                         }

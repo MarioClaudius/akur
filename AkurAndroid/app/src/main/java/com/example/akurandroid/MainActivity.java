@@ -65,12 +65,14 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
 
             case R.id.nav_account:
                 String nama = getIntent().getStringExtra("EXTRA_STORE_NAME");
+                String nama1 = getIntent().getStringExtra("username");
+                String password = getIntent().getStringExtra("password");
                 if(nama == null){
-                    AccountFragment fragment = AccountFragment.newInstance("No Name");
+                    AccountFragment fragment = AccountFragment.newInstance(nama1, password);
                     selectedFragment = fragment;
                 }
                 else{
-                    AccountFragment fragment = AccountFragment.newInstance(nama);
+                    AccountFragment fragment = AccountFragment.newInstance(nama, password);
                     selectedFragment = fragment;
                 }
                 break;
