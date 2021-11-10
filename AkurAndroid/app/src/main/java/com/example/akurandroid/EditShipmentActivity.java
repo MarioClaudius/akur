@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 public class EditShipmentActivity extends AppCompatActivity {
     private RecyclerView rvEditShipment;
-    private ArrayList<Shipment> list = new ArrayList<>();
+    private ArrayList<Shipment> list = new ArrayList<Shipment>();
     private ArrayList<Shipment> newList = new ArrayList<>();
 
     @Override
@@ -25,23 +25,9 @@ public class EditShipmentActivity extends AppCompatActivity {
         rvEditShipment.setHasFixedSize(true);
 
         list.addAll(ShipmentData.getListData());
-//        Intent i = getIntent();
-//        boolean[] isAppear = i.getBooleanArrayExtra("boolAppear");
         rvEditShipment.setLayoutManager(new LinearLayoutManager(this));
         ListShipmentAdapter listShipmentAdapter = new ListShipmentAdapter(list);
         rvEditShipment.setAdapter(listShipmentAdapter);
         rvEditShipment.suppressLayout(true);
     }
-
-//    @Override
-//    public void onBackPressed() {
-//        Intent intent = new Intent(EditShipmentActivity.this, MainActivity.class);
-//        //intent.putExtra("boolAppear", isAppear);
-//        startActivity(intent);
-//    }
-
-//    @Override
-//    protected void onSaveInstanceState(@NonNull Bundle outState) {
-//        super.onSaveInstanceState(outState);
-//    }
 }

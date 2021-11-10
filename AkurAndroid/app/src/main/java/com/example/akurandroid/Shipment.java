@@ -1,5 +1,8 @@
 package com.example.akurandroid;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 public class Shipment {
     private String name;
     private int logo;

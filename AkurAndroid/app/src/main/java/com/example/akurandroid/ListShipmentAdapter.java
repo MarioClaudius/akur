@@ -6,6 +6,7 @@ import android.view.ViewGroup;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -31,20 +32,29 @@ public class ListShipmentAdapter extends RecyclerView.Adapter<ListShipmentAdapte
         Shipment shipment = listShipment.get(position);
         holder.tvShipmentNumber.setText((position + 1) + ".");
         holder.tvShipmentName.setText(shipment.getName());
-        boolean isChecked = holder.shipmentSwitch.isChecked();
-//        if(isChecked){
-//            ShipmentData.shipmentAppear[position] = true;
-//            //EditShipmentActivity.isAppear[position] = true;
-//        }
-//        else{
-//            ShipmentData.shipmentAppear[position] = false;
-//           // EditShipmentActivity.isAppear[position] = false;
-//        }
+        holder.shipmentSwitch.setChecked(shipment.isAppear());
+        holder.shipmentSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    Toast.makeText(buttonView.getContext(), "TRUE" + position, Toast.LENGTH_SHORT).show();
+                    ShipmentData.shipmentAppear[position] = true;
+                }
+                else {
+                    Toast.makeText(buttonView.getContext(), "FALSE" + position, Toast.LENGTH_SHORT).show();
+                    ShipmentData.shipmentAppear[position] = false;
+                }
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
         return listShipment.size();
+    }
+
+    public void setItems(ArrayList<Shipment> list){
+        this.listShipment = list;
     }
 
     public class ListViewHolder extends RecyclerView.ViewHolder{
@@ -59,6 +69,4 @@ public class ListShipmentAdapter extends RecyclerView.Adapter<ListShipmentAdapte
             shipmentSwitch = itemView.findViewById(R.id.item_edit_shipment_switch);
         }
     }
-
-
 }
