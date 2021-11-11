@@ -32,7 +32,7 @@ public class EditShipmentActivity extends AppCompatActivity implements View.OnCl
         rvEditShipment.setLayoutManager(new LinearLayoutManager(this));
         ListShipmentAdapter listShipmentAdapter = new ListShipmentAdapter(list);
         rvEditShipment.setAdapter(listShipmentAdapter);
-        rvEditShipment.suppressLayout(true);
+        //rvEditShipment.suppressLayout(true);          //disable scroll in recyclerview
         backButton.setOnClickListener(this);
     }
 

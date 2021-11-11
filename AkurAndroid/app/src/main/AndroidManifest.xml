@@ -20,7 +20,10 @@
         <activity android:name=".EditShipmentActivity" />
         <activity android:name=".EditProfileActivity" />
         <activity android:name=".ScanActivity" />
-        <activity android:name=".LoginPage" />
+        <activity
+            android:name=".LoginPage"
+            android:screenOrientation="portrait"
+            android:configChanges="keyboardHidden|orientation|screenSize"/>
         <activity
             android:name=".SplashActivity"
             android:theme="@style/Theme.AkurAndroid.NoActionBar">
@@ -32,9 +35,13 @@
         </activity>
         <activity
             android:name=".RegisterPage"
-            android:theme="@style/Theme.AkurAndroid.NoActionBar" />
+            android:theme="@style/Theme.AkurAndroid.NoActionBar"
+            android:screenOrientation="portrait"
+            android:configChanges="keyboardHidden|orientation|screenSize"/>
         <activity
             android:name=".MainActivity"
+            android:screenOrientation="portrait"
+            android:configChanges="keyboardHidden|orientation|screenSize"
             android:theme="@style/Theme.AkurAndroid.NoActionBar" />
     </application>
 
