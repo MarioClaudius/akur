@@ -74,7 +74,7 @@ public class LoginPage extends AppCompatActivity {
             public void onResponse(Call<List<AkurAccount>> call, Response<List<AkurAccount>> response) {
                 if(response.isSuccessful()){
                     list = response.body();
-                    String emailInput = edtEmail.getText().toString().trim();
+                    String userOrEmailInput = edtEmail.getText().toString().trim();
                     String passwordInput = edtPassword.getText().toString().trim();
 //                    String line = "";
                     for(AkurAccount akun : list){
@@ -82,7 +82,8 @@ public class LoginPage extends AppCompatActivity {
 //                        line += "Password : " + akun.getPassword() + "\n";
 //                        line += "Email : " + akun.getEmail() + "\n";
 //                        tvTest.setText(line);
-                        if(akun.getEmail().equals(emailInput) && akun.getPassword().equals(passwordInput)){
+                        if((akun.getUsername().equals(userOrEmailInput) || akun.getEmail().equals(userOrEmailInput)) &&
+                                akun.getPassword().equals(passwordInput)){
                             Intent moveAkur = new Intent(LoginPage.this, MainActivity.class);
                             moveAkur.putExtra("username", akun.getUsername());
                             moveAkur.putExtra("email", akun.getEmail());
