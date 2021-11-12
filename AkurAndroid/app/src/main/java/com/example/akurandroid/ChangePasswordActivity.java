@@ -2,15 +2,22 @@ package com.example.akurandroid;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.InputType;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ChangePasswordActivity extends AppCompatActivity implements View.OnClickListener {
     private EditText oldPasswordEdt;
@@ -20,6 +27,7 @@ public class ChangePasswordActivity extends AppCompatActivity implements View.On
     private ImageButton newPasswordBtn;
     private ImageButton confirmPasswordBtn;
     private Button confirm;
+    Handler handler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,9 +51,48 @@ public class ChangePasswordActivity extends AppCompatActivity implements View.On
         String oldPassword = oldPasswordEdt.getText().toString();
         String newPassword = newPasswordEdt.getText().toString();
         String confirmPassword = confirmPasswordEdt.getText().toString();
-        if((oldPassword.equals(getIntent().getStringExtra("oldPassword"))) && newPassword.equals(confirmPassword)){
-            Toast.makeText(ChangePasswordActivity.this, "PASSWORD COCOK", Toast.LENGTH_SHORT).show();
+        String email = getIntent().getStringExtra("email");
+        String username = getIntent().getStringExtra("username");
+        if(newPassword.equals(confirmPassword)){
+            ApiInterface apiInterface = RetrofitClient.getRetrofitInstance().create(ApiInterface.class);
+            Call<Boolean> call = apiInterface.updateAccountPassword(username, oldPassword, newPassword);
+            call.enqueue(new Callback<Boolean>() {
+                @Override
+                public void onResponse(Call<Boolean> call, Response<Boolean> response) {
+                    Boolean isSuccess = response.body();
+                    Log.d("SUKSES", "" + isSuccess);
+                    if(isSuccess){
+                        Toast.makeText(ChangePasswordActivity.this, "Updated Successfully", Toast.LENGTH_SHORT).show();
+                        Log.d("SUKSES1", "MASUK KE TRUE");
+                        handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                onBackPressed();
+                                finish();
+                            }
+                        },1500);
+                    }
+                    else{
+                        Toast.makeText(ChangePasswordActivity.this, "Update Failed", Toast.LENGTH_SHORT).show();
+                        Log.d("SUKSES1", "MASUK KE FALSE");
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<Boolean> call, Throwable t) {
+                    Toast.makeText(ChangePasswordActivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
         }
+        else{
+            Toast.makeText(ChangePasswordActivity.this, "Password tidak cocok", Toast.LENGTH_SHORT).show();
+        }
+
+//        if((oldPassword.equals(getIntent().getStringExtra("oldPassword"))) && newPassword.equals(confirmPassword)){
+//            Toast.makeText(ChangePasswordActivity.this, "PASSWORD COCOK", Toast.LENGTH_SHORT).show();
+//            AkurAccount a = new AkurAccount();
+//        }
     }
 
     @Override

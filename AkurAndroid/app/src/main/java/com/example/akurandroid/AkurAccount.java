@@ -5,6 +5,10 @@ public class AkurAccount {
     private String email;
     private String password;
 
+    public AkurAccount(){
+
+    }
+
     public AkurAccount(String username, String email, String password) {
         this.username = username;
         this.email = email;

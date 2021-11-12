@@ -64,7 +64,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="20dp"
         android:fontFamily="@font/comfortaa"
-        android:text="@string/email"/>
+        android:text="Username or Email"/>
 
     <EditText
         android:id="@+id/edt_email"

@@ -38,11 +38,12 @@ public class AccountFragment extends Fragment implements View.OnClickListener {
 
     }
 
-    public static AccountFragment newInstance(String storeName, String password){
+    public static AccountFragment newInstance(String storeName, String username, String email){
         AccountFragment fragment = new AccountFragment();
         Bundle args = new Bundle();
         args.putString("store", storeName);
-        args.putString("passwordBundle", password);
+        args.putString("usernameBundle", username);
+        args.putString("emailBundle", email);
         fragment.setArguments(args);
         return fragment;
     }
@@ -90,7 +91,8 @@ public class AccountFragment extends Fragment implements View.OnClickListener {
 
             case R.id.btn_change_password:
                 intent = new Intent(getActivity(), ChangePasswordActivity.class);
-                intent.putExtra("oldPassword", getArguments().getString("passwordBundle"));
+                intent.putExtra("username", getArguments().getString("usernameBundle"));
+                intent.putExtra("email", getArguments().getString("emailBundle"));
                 startActivity(intent);
                 break;
 

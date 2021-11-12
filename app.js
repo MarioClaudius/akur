@@ -68,15 +68,29 @@ const client = new Client({
     //     res.send(`Data [${req.body.username}, ${req.body.email}, ${req.body.password}] berhasil di-insert.`);
     // });
   });
-  
-  app.put("/update/:username", async (req, res) => {
+
+  app.post("/update", async (req, res) => {
     try {
         const { id } = req.params;
-        const todo = await client.query(`UPDATE akun SET email = '${req.body.email}', password = '${req.body.password}' WHERE username= $1`, [
-            username
-        ]);
-  
-        res.json(todo.rows[0]);
+        const oldPassword = req.body.oldPassword;
+        const newPassword = req.body.newPassword; 
+        const username = req.body.username;
+        let checkPassword = await client.query(`SELECT password FROM akun WHERE username = '${username}'`);
+       // console.log(checkPassword.rows)
+        if(checkPassword.rows[0].password == oldPassword){
+          const todo = await client.query(`UPDATE akun SET password = '${newPassword}' WHERE username = '${username}'`);
+          // res.json({
+          //   success:true
+          // })
+          res.send(true);
+        }
+        else{
+          res.send(false);
+          // res.json({
+          //   success:false
+          // })
+        }
+        res.send("MASUK");
     } catch (err) {
         console.error(err.message);
     }

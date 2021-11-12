@@ -30,37 +30,37 @@ public class LoginPage extends AppCompatActivity {
     private EditText edtEmail;
     private EditText edtPassword;
     private Button login;
-    private ImageView logo;
-    private TextView tvLogin;
-    private TextView tvLoginDetail;
-    private TextView tvEmail;
-    private TextView tvPassword;
-    private TextView tvForgotPassword;
-    private CheckBox checkBox;
-    private TextView tvRememberMe;
-    private TextView tvNewOnPlatform;
+    //private ImageView logo;
+    //private TextView tvLogin;
+   // private TextView tvLoginDetail;
+    //private TextView tvEmail;
+    //private TextView tvPassword;
+   // private TextView tvForgotPassword;
+   // private CheckBox checkBox;
+   // private TextView tvRememberMe;
+   // private TextView tvNewOnPlatform;
     private TextView tvCreateAccount;
-    private TextView tvTest;
+    //private TextView tvTest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_page);
 
-        logo = findViewById(R.id.logo);
-        tvLogin = findViewById(R.id.tv_login);
-        tvLoginDetail = findViewById(R.id.tv_login_detail);
-        tvEmail = findViewById(R.id.tv_email);
+//        logo = findViewById(R.id.logo);
+//        tvLogin = findViewById(R.id.tv_login);
+//        tvLoginDetail = findViewById(R.id.tv_login_detail);
+//        tvEmail = findViewById(R.id.tv_email);
         edtEmail = findViewById(R.id.edt_email);
-        tvPassword = findViewById(R.id.tv_password);
-        tvForgotPassword = findViewById(R.id.tv_forgot_password);
+//        tvPassword = findViewById(R.id.tv_password);
+//        tvForgotPassword = findViewById(R.id.tv_forgot_password);
         edtPassword = findViewById(R.id.edt_password);
-        checkBox = findViewById(R.id.checkbox);
-        tvRememberMe = findViewById(R.id.tv_remember_me);
+//        checkBox = findViewById(R.id.checkbox);
+//        tvRememberMe = findViewById(R.id.tv_remember_me);
         login = findViewById(R.id.btn_login);
-        tvNewOnPlatform = findViewById(R.id.tv_new_on_platform);
+//        tvNewOnPlatform = findViewById(R.id.tv_new_on_platform);
         tvCreateAccount = findViewById(R.id.tv_create_account);
-        tvTest = findViewById(R.id.tv_test);
+//        tvTest = findViewById(R.id.tv_test);
 
         tvCreateAccount.setOnClickListener(this::goToRegisterPage);
         login.setOnClickListener(this::checkLoginCredential);
