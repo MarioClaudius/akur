@@ -7,13 +7,17 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationBarView;
 
@@ -22,6 +26,7 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
     public static final String EXTRA_STORE_NAME = "NO NAME";
     BottomNavigationView bottomNavigationView;
     FloatingActionButton floatingButton;
+    private Dialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +37,7 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setBackground(null);       //membuat background bottomNavigationView tidak ada
         bottomNavigationView.setOnItemSelectedListener(this::onNavigationItemSelected);
+        dialog = new Dialog(this);
 
         floatingButton.setOnClickListener(this);
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
@@ -115,6 +121,26 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
     }
 
     public void onBackPressed(){
-        moveTaskToBack(true);
+        dialog.setContentView(R.layout.dialog_exit);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        MaterialButton exitButton = dialog.findViewById(R.id.exit_button);
+        MaterialButton cancelButton = dialog.findViewById(R.id.cancel_exit_button);
+        dialog.show();
+        exitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                onBackPressed();
+                moveTaskToBack(true);
+            }
+        });
+
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
     }
 }
