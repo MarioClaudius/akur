@@ -131,7 +131,6 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
-                onBackPressed();
                 moveTaskToBack(true);
             }
         });

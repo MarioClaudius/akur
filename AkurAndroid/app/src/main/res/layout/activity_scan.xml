@@ -5,7 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ScanActivity">
-    
+
+    <ImageButton
+        android:id="@+id/flash_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/transparent"
+        android:layout_margin="16dp"
+        android:src="@drawable/ic_flash_on"/>
+
     <me.dm7.barcodescanner.zxing.ZXingScannerView
         android:id="@+id/zxscan"
         android:layout_width="match_parent"
@@ -15,7 +23,7 @@
         android:id="@+id/layout_result"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_centerVertical="true"
         android:orientation="vertical"
         android:padding="8dp">
 
@@ -23,9 +31,12 @@
             android:id="@+id/txt_result"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="..."
+            android:layout_marginTop="300dp"
+            android:fontFamily="@font/comfortaa"
+            android:text="Scan your code here...."
             android:gravity="center"
-            android:textSize="24sp"/>
+            android:textColor="@color/white"
+            android:textSize="20sp"/>
     </LinearLayout>
 
 
