@@ -1,19 +1,29 @@
 package com.example.akurandroid;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.res.ResourcesCompat;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.button.MaterialButton;
+import com.google.zxing.BarcodeFormat;
 import com.google.zxing.Result;
+import com.google.zxing.WriterException;
+import com.google.zxing.common.BitMatrix;
+import com.google.zxing.oned.Code128Writer;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionDeniedResponse;
@@ -29,6 +39,7 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
     private ZXingScannerView scannerView;
     private ImageButton flashButton;
     private boolean flashIsOn = false;
+    private Bitmap mBitmap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,9 +84,17 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
         if(rawResult.getText() != null){
             BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(ScanActivity.this, R.style.BottomSheetDialogTheme);
             View bottomSheetView = LayoutInflater.from(getApplicationContext())
-                    .inflate(R.layout.bottom_sheet_layout, findViewById(R.id.bottomSheetContainer));
-            Button yesButton = bottomSheetView.findViewById(R.id.yes_input_button);
-            Button noButton = bottomSheetView.findViewById(R.id.no_input_button);
+                    .inflate(R.layout.bottom_sheet_layout, (LinearLayout) findViewById(R.id.bottomSheetContainer));
+            bottomSheetDialog.setCancelable(false);                 //bottomSheet tidak bisa di-cancel pakai back button
+            TextView barcodeNumber = bottomSheetView.findViewById(R.id.barcode_number);
+            MaterialButton yesButton = bottomSheetView.findViewById(R.id.yes_input_button);
+            MaterialButton noButton = bottomSheetView.findViewById(R.id.no_input_button);
+            barcodeNumber.setText(rawResult.getText());
+            Typeface typeface = ResourcesCompat.getFont(getApplicationContext(), R.font.comfortaa);
+            barcodeNumber.setTypeface(typeface);
+            //ambil gambar barcode
+            ImageView barcode = bottomSheetView.findViewById(R.id.barcode);
+            generateBarCode(rawResult.getText(), barcode);
             yesButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -96,13 +115,7 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
 
             bottomSheetDialog.setContentView(bottomSheetView);
             bottomSheetDialog.show();
-//            Intent backWithDataIntent = new Intent(ScanActivity.this, MainActivity.class);
-//            backWithDataIntent.putExtra(/*MainActivity.EXTRA_SCAN_RESULT*/ "EXTRA_SCAN_RESULT", rawResult.getText());
-//            startActivity(backWithDataIntent);
         }
-//        txtResult.setText(rawResult.getText());
-//        scannerView.resumeCameraPreview(ScanActivity.this);          //biar bisa jalanin kameranya setelah set Text
-
     }
 
     @Override
@@ -115,6 +128,26 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
         else {
             flashButton.setImageResource(R.drawable.ic_flash_off);
             flashIsOn = true;
+        }
+    }
+
+    public void generateBarCode(String data, ImageView mImageView){
+        com.google.zxing.Writer c9 = new Code128Writer();
+        try {
+            BitMatrix bm = c9.encode(data, BarcodeFormat.CODE_128,500, 150);
+            mBitmap = Bitmap.createBitmap(500, 150, Bitmap.Config.ARGB_8888);
+
+            for (int i = 0; i < 500; i++) {
+                for (int j = 0; j < 150; j++) {
+
+                    mBitmap.setPixel(i, j, bm.get(i, j) ? Color.BLACK : Color.WHITE);
+                }
+            }
+        } catch (WriterException e) {
+            e.printStackTrace();
+        }
+        if (mBitmap != null) {
+            mImageView.setImageBitmap(mBitmap);
         }
     }
 }

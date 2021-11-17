@@ -26,6 +26,7 @@
         android:src="@drawable/barcode"/>
 
     <TextView
+        android:id="@+id/barcode_number"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
@@ -112,27 +113,33 @@
         android:layout_margin="20dp"
         android:orientation="horizontal">
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/no_input_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="NO"
+            app:cornerRadius="20dp"
             android:textColor="@color/black"
-            android:backgroundTint="@color/white"
             app:strokeColor="@color/hijau_logo"
             app:strokeWidth="1dp"
+            android:theme="@style/FormButton"
+            android:backgroundTint="@color/white"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
             android:fontFamily="@font/comfortaa"/>
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/yes_input_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_marginStart="16dp"
             android:text="YES"
+            app:cornerRadius="20dp"
             android:textColor="@color/white"
             android:fontFamily="@font/comfortaa"
+            android:theme="@style/FormButton"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
             android:backgroundTint="@color/hijau_logo"/>
     </LinearLayout>
 </LinearLayout>
