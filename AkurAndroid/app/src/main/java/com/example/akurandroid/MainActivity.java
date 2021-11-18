@@ -21,12 +21,20 @@ import com.google.android.material.button.MaterialButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationBarView;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class MainActivity extends AppCompatActivity implements NavigationBarView.OnItemSelectedListener, View.OnClickListener {
     public static final String EXTRA_SCAN_RESULT = "";
     public static final String EXTRA_STORE_NAME = "NO NAME";
+    String store_name;
+    String email;
+    String username;
     BottomNavigationView bottomNavigationView;
     FloatingActionButton floatingButton;
     private Dialog dialog;
+    Fragment selectedFragment = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,40 +70,58 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        Fragment selectedFragment = null;
+        //Fragment selectedFragment = null;
 
         switch(item.getItemId()){
             case R.id.nav_home:
                 selectedFragment = new HomeFragment();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        selectedFragment).commit();
                 break;
 
             case R.id.nav_account:
-                String nama = getIntent().getStringExtra("EXTRA_STORE_NAME");
-                String username = getIntent().getStringExtra("username");
-                String email = getIntent().getStringExtra("email");
-                //String password = getIntent().getStringExtra("password");
-                if(nama == null){
-                    AccountFragment fragment = AccountFragment.newInstance(username, username, email);
-                    selectedFragment = fragment;
-                }
-                else{
-                    AccountFragment fragment = AccountFragment.newInstance(nama, username, email);
-                    selectedFragment = fragment;
-                }
+                int id = getIntent().getIntExtra("id", 0);
+                Log.d("ID MARIO", "NILAI ID DI NAV ACCOUNT = " + id);
+                ApiInterface apiInterface = RetrofitClient.getRetrofitInstance().create(ApiInterface.class);
+                Call<AkurAccount> call = apiInterface.getAkurAccountInfo(id);
+                Log.d("HORE1", "MASUK KE CASE NAV ACCOUNT");
+                call.enqueue(new Callback<AkurAccount>() {
+                    @Override
+                    public void onResponse(Call<AkurAccount> call, Response<AkurAccount> response) {
+                        Log.d("HORE2", "MASUK KE ENQUEUE");
+                        AkurAccount account = response.body();
+                        store_name = account.getStoreName();
+                        email = account.getEmail();
+                        username = account.getUsername();
+                        int id = getIntent().getIntExtra("id", 0);
+                        if(store_name == null){
+                            store_name = username;
+                        }
+                        AccountFragment fragment = AccountFragment.newInstance(id, store_name, username, email);
+                        selectedFragment = fragment;
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                                selectedFragment).commit();
+                    }
+
+                    @Override
+                    public void onFailure(Call<AkurAccount> call, Throwable t) {
+
+                    }
+                });
                 break;
 
             case R.id.nav_history:
                 selectedFragment = new HistoryFragment();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        selectedFragment).commit();
                 break;
 
             case R.id.nav_track:
                 selectedFragment = new TrackFragment();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        selectedFragment).commit();
                 break;
         }
-
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                selectedFragment).commit();
-
         return true;
     }
 

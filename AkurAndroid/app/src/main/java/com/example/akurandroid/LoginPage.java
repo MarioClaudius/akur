@@ -67,41 +67,93 @@ public class LoginPage extends AppCompatActivity {
     }
 
     public void checkLoginCredential(View v){
+        String usernameInput = edtEmail.getText().toString().trim();
+        String passwordInput = edtPassword.getText().toString().trim();
         ApiInterface apiInterface = RetrofitClient.getRetrofitInstance().create(ApiInterface.class);
-        Call<List<AkurAccount>> call = apiInterface.getAkurAccount();
-        call.enqueue(new Callback<List<AkurAccount>>() {
+        Call<AkurAccount> call = apiInterface.getAkurAccountId(usernameInput, passwordInput);
+        Log.d("ID_MARIO1", "Masuk method");
+        call.enqueue(new Callback<AkurAccount>() {
             @Override
-            public void onResponse(Call<List<AkurAccount>> call, Response<List<AkurAccount>> response) {
-                if(response.isSuccessful()){
-                    list = response.body();
-                    String userOrEmailInput = edtEmail.getText().toString().trim();
-                    String passwordInput = edtPassword.getText().toString().trim();
-//                    String line = "";
-                    for(AkurAccount akun : list){
-//                        line += "Username : " + akun.getUsername() + "\n";
-//                        line += "Password : " + akun.getPassword() + "\n";
-//                        line += "Email : " + akun.getEmail() + "\n";
-//                        tvTest.setText(line);
-                        if((akun.getUsername().equals(userOrEmailInput) || akun.getEmail().equals(userOrEmailInput)) &&
-                                akun.getPassword().equals(passwordInput)){
-                            Intent moveAkur = new Intent(LoginPage.this, MainActivity.class);
-                            moveAkur.putExtra("username", akun.getUsername());
-                            moveAkur.putExtra("email", akun.getEmail());
-                            moveAkur.putExtra("password", akun.getPassword());
-                            startActivity(moveAkur);
-                            return;
-                        }
-                    }
+            public void onResponse(Call<AkurAccount> call, Response<AkurAccount> response) {
+                AkurAccount account = response.body();
+                int id = account.getId();
+                if(id != -1){
+                    Intent moveAkur = new Intent(LoginPage.this, MainActivity.class);
+                    moveAkur.putExtra("id", id);
+                    startActivity(moveAkur);
+                    return;
+                }
+                else {
                     Toast.makeText(LoginPage.this, "Email / Password tidak cocok!", Toast.LENGTH_SHORT).show();
                 }
+                Log.d("ID_MARIO", "" + id);
             }
 
             @Override
-            public void onFailure(Call<List<AkurAccount>> call, Throwable t) {
+            public void onFailure(Call<AkurAccount> call, Throwable t) {
+                Toast.makeText(LoginPage.this, "Login gagal", Toast.LENGTH_SHORT).show();
                 Log.d("ERROR: ", t.getMessage());
-                Toast.makeText(LoginPage.this, "Gagal", Toast.LENGTH_SHORT).show();
             }
         });
+//        call.enqueue(new Callback<Integer>() {
+//            @Override
+//            public void onResponse(Call<Integer> call, Response<Integer> response) {
+//                Log.d("ID_MARIO2", "MASUK KE ENQUEUE");
+//                if(response.isSuccessful()){
+//                    int id = response.body();
+//                    if(id != -1){
+//                        Log.d("ID_MARIO", "" + id);
+////                        Intent moveAkur = new Intent(LoginPage.this, MainActivity.class);
+////                        moveAkur.putExtra("id", id);
+//                    }
+//                    else {
+//                        Log.d("ID_MARIO_GAGAL", "" + id);
+//                    }
+////                    String userOrEmailInput = edtEmail.getText().toString().trim();
+////                    String passwordInput = edtPassword.getText().toString().trim();
+//////                    String line = "";
+////                    for(AkurAccount akun : list){
+//////                        line += "Username : " + akun.getUsername() + "\n";
+//////                        line += "Password : " + akun.getPassword() + "\n";
+//////                        line += "Email : " + akun.getEmail() + "\n";
+//////                        tvTest.setText(line);
+////                        if((akun.getUsername().equals(userOrEmailInput) || akun.getEmail().equals(userOrEmailInput)) &&
+////                                akun.getPassword().equals(passwordInput)){
+////                            Intent moveAkur = new Intent(LoginPage.this, MainActivity.class);
+////                            moveAkur.putExtra("username", akun.getUsername());
+////                            moveAkur.putExtra("email", akun.getEmail());
+////                            moveAkur.putExtra("password", akun.getPassword());
+////                            startActivity(moveAkur);
+////                            return;
+////                        }
+////                    }
+////                    Toast.makeText(LoginPage.this, "Email / Password tidak cocok!", Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<Integer> call, Throwable t) {
+//                Log.d("ERROR: ", t.getMessage());
+//                Toast.makeText(LoginPage.this, "Gagal", Toast.LENGTH_SHORT).show();
+//            }
+//        });
+
+        //test GET
+//        ApiInterface apiInterface = RetrofitClient.getRetrofitInstance().create(ApiInterface.class);
+//        Call<List<AkurAccount>> call = apiInterface.getAkurAccount();
+//        Log.d("ID_MARIO1", "MASUK METHOD");
+//        call.enqueue(new Callback<List<AkurAccount>>() {
+//            @Override
+//            public void onResponse(Call<List<AkurAccount>> call, Response<List<AkurAccount>> response) {
+//                list = response.body();
+//                Log.d("ID_MARIO2", "MASUK ENQUEUE");
+//            }
+//
+//            @Override
+//            public void onFailure(Call<List<AkurAccount>> call, Throwable t) {
+//                Log.d("ID_MARIO3", "MASUK ENQUEUE");
+//            }
+//        });
     }
 
     public void goToRegisterPage(View v){

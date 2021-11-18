@@ -38,12 +38,15 @@ public class AccountFragment extends Fragment implements View.OnClickListener {
 
     }
 
-    public static AccountFragment newInstance(String storeName, String username, String email){
+    public static AccountFragment newInstance(int id, String storeName, String username, String email){
         AccountFragment fragment = new AccountFragment();
         Bundle args = new Bundle();
-        args.putString("store", storeName);
+        args.putInt("idBundle", id);
+        Log.d("ID MARIO1", "NILAI ID DI BUNDLE = " + id);
+        args.putString("storeBundle", storeName);
         args.putString("usernameBundle", username);
         args.putString("emailBundle", email);
+        Log.d("Masukkin ke BUNDLE", storeName + username + email);
         fragment.setArguments(args);
         return fragment;
     }
@@ -69,9 +72,10 @@ public class AccountFragment extends Fragment implements View.OnClickListener {
         btnChangePassword.setOnClickListener(this);
         btnLogout.setOnClickListener(this);
         if(getArguments() != null){
-            this.namaToko = getArguments().getString("store");
+            this.namaToko = getArguments().getString("storeBundle");
         }
         tvStoreName.setText(this.namaToko);
+        Log.d("SET NAMA TOKO", namaToko);
         return v;
     }
 
@@ -81,6 +85,8 @@ public class AccountFragment extends Fragment implements View.OnClickListener {
         switch (v.getId()){
             case R.id.btn_edit_profile:
                 intent = new Intent(getActivity(), EditProfileActivity.class);
+                intent.putExtra("idEdit", getArguments().getInt("idBundle"));
+                intent.putExtra("storeEdit", getArguments().getString("storeBundle"));
                 startActivity(intent);
                 break;
 
@@ -91,8 +97,9 @@ public class AccountFragment extends Fragment implements View.OnClickListener {
 
             case R.id.btn_change_password:
                 intent = new Intent(getActivity(), ChangePasswordActivity.class);
-                intent.putExtra("username", getArguments().getString("usernameBundle"));
-                intent.putExtra("email", getArguments().getString("emailBundle"));
+                intent.putExtra("idEdit", getArguments().getInt("idBundle"));
+                intent.putExtra("storeEdit", getArguments().getString("storeBundle"));
+                intent.putExtra("emailEdit", getArguments().getString("emailBundle"));
                 startActivity(intent);
                 break;
 

@@ -13,14 +13,29 @@ import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 public interface ApiInterface {
-    @GET("/show")
+    @GET("/account/show")
     Call<List<AkurAccount>> getAkurAccount();
 
     @FormUrlEncoded
-    @POST("/insert")
+    @POST("/account/login")
+    Call<AkurAccount> getAkurAccountId(@Field("username") String username,
+                                   @Field("password") String password);
+
+    @FormUrlEncoded
+    @POST("/account/register")
     Call<AkurAccount> createAkurAccount(@Field("username") String username,
                                         @Field("email") String email,
                                         @Field("password") String password);
+
+    @FormUrlEncoded
+    @POST("/account/userinfo")
+    Call<AkurAccount> getAkurAccountInfo(@Field("user_id") int id);
+
+    @FormUrlEncoded
+    @POST("/account/updateinfo")
+    Call<Boolean> updateAkurAccountInfo(@Field("user_id") int id,
+                                        @Field("nama_toko") String storeName,
+                                        @Field("phone_number") String phoneNumber);
 
     @FormUrlEncoded
     @POST("/update")

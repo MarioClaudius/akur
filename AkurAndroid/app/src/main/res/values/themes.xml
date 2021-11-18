@@ -3,7 +3,7 @@
     <style name="Theme.AkurAndroid" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="android:statusBarColor">@color/hijau_logo</item>
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/white</item>
+        <item name="colorPrimary">@color/hijau_logo</item>
         <item name="colorPrimaryVariant">@color/hijau_logo</item>
         <item name="colorOnPrimary">@color/black</item>
         <!-- Secondary brand color. -->
