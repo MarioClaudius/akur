@@ -7,13 +7,14 @@
     android:layout_marginStart="20dp"
     android:layout_marginEnd="20dp"
     android:layout_marginTop="5dp"
-    android:layout_marginBottom="5dp">
+    android:layout_marginBottom="5dp"
+    android:background="@color/orange">
 
     <Button
         android:id="@+id/btn_history"
         android:layout_width="match_parent"
         android:layout_height="65dp"
-        android:backgroundTint="@color/white"
+        android:backgroundTint="@color/orange"
         android:stateListAnimator="@null"/>
 
     <LinearLayout
@@ -30,6 +31,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/tv_id_shipment_history"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 tools:text="#30"
@@ -64,6 +66,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/tv_nomor_resi_history"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="JNE - 12890382983"
@@ -72,6 +75,7 @@
                     android:textColor="@color/black"/>
 
                 <TextView
+                    android:id="@+id/tv_shipment_type_history"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Reguler"
@@ -87,6 +91,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/tv_day_month"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="26 Desember"
@@ -95,6 +100,7 @@
                     android:textAlignment="textEnd"/>
 
                 <TextView
+                    android:id="@+id/tv_year_hour"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="2021 - 12.54"
