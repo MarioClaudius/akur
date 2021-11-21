@@ -38,8 +38,8 @@ public interface ApiInterface {
                                         @Field("phone_number") String phoneNumber);
 
     @FormUrlEncoded
-    @POST("/update")
-    Call<Boolean> updateAccountPassword(@Field("username") String username,
+    @POST("/account/changepassword")
+    Call<Boolean> updateAccountPassword(@Field("user_id") int id,
                                         @Field("oldPassword") String oldPassword,
                                         @Field("newPassword") String newPassword);
 }

@@ -51,11 +51,10 @@ public class ChangePasswordActivity extends AppCompatActivity implements View.On
         String oldPassword = oldPasswordEdt.getText().toString();
         String newPassword = newPasswordEdt.getText().toString();
         String confirmPassword = confirmPasswordEdt.getText().toString();
-        String email = getIntent().getStringExtra("email");
-        String username = getIntent().getStringExtra("username");
+        int id = getIntent().getIntExtra("idEdit", 0);
         if(newPassword.equals(confirmPassword)){
             ApiInterface apiInterface = RetrofitClient.getRetrofitInstance().create(ApiInterface.class);
-            Call<Boolean> call = apiInterface.updateAccountPassword(username, oldPassword, newPassword);
+            Call<Boolean> call = apiInterface.updateAccountPassword(id, oldPassword, newPassword);
             call.enqueue(new Callback<Boolean>() {
                 @Override
                 public void onResponse(Call<Boolean> call, Response<Boolean> response) {

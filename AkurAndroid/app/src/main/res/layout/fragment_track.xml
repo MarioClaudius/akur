@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <LinearLayout
-        android:id="@+id/testestest"
+        android:id="@+id/layout_judul_track"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -37,7 +37,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_row_track"
         android:layout_width="match_parent"
-        android:layout_below="@+id/testestest"
+        android:layout_below="@+id/layout_judul_track"
         android:layout_height="match_parent"
         tools:listitem="@layout/row_track"
         android:layout_marginBottom="85dp"/>

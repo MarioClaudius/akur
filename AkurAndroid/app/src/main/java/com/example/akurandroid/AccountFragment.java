@@ -98,8 +98,6 @@ public class AccountFragment extends Fragment implements View.OnClickListener {
             case R.id.btn_change_password:
                 intent = new Intent(getActivity(), ChangePasswordActivity.class);
                 intent.putExtra("idEdit", getArguments().getInt("idBundle"));
-                intent.putExtra("storeEdit", getArguments().getString("storeBundle"));
-                intent.putExtra("emailEdit", getArguments().getString("emailBundle"));
                 startActivity(intent);
                 break;
 
