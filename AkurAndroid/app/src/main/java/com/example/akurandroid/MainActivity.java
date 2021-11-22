@@ -1,5 +1,5 @@
 package com.example.akurandroid;
-
+//test this comment for bagus
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
