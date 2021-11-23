@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         //Fragment selectedFragment = null;
-
+        int id = getIntent().getIntExtra("id", 0);
         switch(item.getItemId()){
             case R.id.nav_home:
                 selectedFragment = new HomeFragment();
@@ -80,7 +80,6 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
                 break;
 
             case R.id.nav_account:
-                int id = getIntent().getIntExtra("id", 0);
                 Log.d("ID MARIO", "NILAI ID DI NAV ACCOUNT = " + id);
                 ApiInterface apiInterface = RetrofitClient.getRetrofitInstance().create(ApiInterface.class);
                 Call<AkurAccount> call = apiInterface.getAkurAccountInfo(id);
@@ -111,7 +110,8 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
                 break;
 
             case R.id.nav_history:
-                selectedFragment = new HistoryFragment();
+                HistoryFragment fragment = HistoryFragment.newInstance(id);
+                selectedFragment = fragment;
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         selectedFragment).commit();
                 break;

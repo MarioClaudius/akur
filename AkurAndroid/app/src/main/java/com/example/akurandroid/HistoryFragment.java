@@ -1,6 +1,7 @@
 package com.example.akurandroid;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,10 +13,26 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class HistoryFragment extends Fragment {
     private RecyclerView rvHistory;
-    private ArrayList<ScanHistory> list = new ArrayList<>();
+    private List<ScanHistory> list = new ArrayList<ScanHistory>();
+
+    public HistoryFragment(){}
+
+    public static HistoryFragment newInstance(int id){
+        HistoryFragment fragment = new HistoryFragment();
+        Bundle args = new Bundle();
+        args.putInt("idBundle", id);
+        Log.d("MASUKKIN KE BUNDLE", ""+id);
+        fragment.setArguments(args);
+        return fragment;
+    }
 
     @Nullable
     @Override
@@ -23,11 +40,26 @@ public class HistoryFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_history, container, false);
         rvHistory = v.findViewById(R.id.rv_row_history);
         rvHistory.setHasFixedSize(true);
-        list.addAll(ScanHistoryData.getListData());
-        rvHistory.setLayoutManager(new LinearLayoutManager(v.getContext()));
-        ListScanHistoryAdapter listScanHistoryAdapter = new ListScanHistoryAdapter(list);
-        rvHistory.setAdapter(listScanHistoryAdapter);
-        //ApiInterface apiInterface = RetrofitClient.getRetrofitInstance().create(ApiInterface.class);
+        int id = getArguments().getInt("idBundle");
+//        Log.d("NGAMBIL NILAI BUNDLE ID", "" + getArguments().getInt("idBundle"));
+        ApiInterface apiInterface = RetrofitClient.getRetrofitInstance().create(ApiInterface.class);
+        Call<List<ScanHistory>> call = apiInterface.getHistoryList(id);
+        call.enqueue(new Callback<List<ScanHistory>>() {
+            @Override
+            public void onResponse(Call<List<ScanHistory>> call, Response<List<ScanHistory>> response) {
+                if(response.isSuccessful()){
+                    list = response.body();
+                    rvHistory.setLayoutManager(new LinearLayoutManager(v.getContext()));
+                    ListScanHistoryAdapter listScanHistoryAdapter = new ListScanHistoryAdapter(list);
+                    rvHistory.setAdapter(listScanHistoryAdapter);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<ScanHistory>> call, Throwable t) {
+
+            }
+        });
         return v;
     }
 }

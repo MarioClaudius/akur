@@ -1,5 +1,6 @@
 package com.example.akurandroid;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,11 +13,13 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.Locale;
 
 public class ListScanHistoryAdapter extends RecyclerView.Adapter<ListScanHistoryAdapter.ListViewHolder> {
-    private ArrayList<ScanHistory> listHistory;
+    private List<ScanHistory> listHistory;
 
-    public ListScanHistoryAdapter(ArrayList<ScanHistory> list){
+    public ListScanHistoryAdapter(List<ScanHistory> list){
         this.listHistory = list;
     }
 
@@ -32,13 +35,12 @@ public class ListScanHistoryAdapter extends RecyclerView.Adapter<ListScanHistory
         final SimpleDateFormat FORMAT_DAY_MONTH = new SimpleDateFormat("dd MMMM");
         final SimpleDateFormat FORMAT_YEAR_HOUR = new SimpleDateFormat("yyyy HH:mm");
         ScanHistory scanHistory = listHistory.get(position);
-        holder.tvIdShipment.setText("#" + scanHistory.getId());
         holder.tvReceiptNumber.setText(scanHistory.getCourierName() + " - " + scanHistory.getReceiptNumber());
-        holder.tvShipmentType.setText("Reguler");
+        holder.tvShipmentType.setText(scanHistory.getCourierType());
         String sDate = scanHistory.getDate();
         Date date = null;
         try {
-            date = new SimpleDateFormat("EEE MMM dd yyyy HH:mm:ss").parse(sDate);
+            date = new SimpleDateFormat("EEE MMM dd yyyy HH:mm:ss zzz", Locale.ENGLISH).parse(sDate);
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -54,11 +56,10 @@ public class ListScanHistoryAdapter extends RecyclerView.Adapter<ListScanHistory
     }
 
     public class ListViewHolder extends RecyclerView.ViewHolder{
-        TextView tvIdShipment, tvReceiptNumber, tvShipmentType, tvDayMonth, tvYearHour;
+        TextView tvReceiptNumber, tvShipmentType, tvDayMonth, tvYearHour;
 
         public ListViewHolder(@NonNull View itemView) {
             super(itemView);
-            tvIdShipment = itemView.findViewById(R.id.tv_id_shipment_history);
             tvReceiptNumber = itemView.findViewById(R.id.tv_nomor_resi_history);
             tvShipmentType = itemView.findViewById(R.id.tv_shipment_type_history);
             tvDayMonth = itemView.findViewById(R.id.tv_day_month);

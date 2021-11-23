@@ -1,5 +1,6 @@
 package com.example.akurandroid;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -42,4 +43,8 @@ public interface ApiInterface {
     Call<Boolean> updateAccountPassword(@Field("user_id") int id,
                                         @Field("oldPassword") String oldPassword,
                                         @Field("newPassword") String newPassword);
+
+    @FormUrlEncoded
+    @POST("/account/history")
+    Call<List<ScanHistory>> getHistoryList(@Field("user_id") int id);
 }

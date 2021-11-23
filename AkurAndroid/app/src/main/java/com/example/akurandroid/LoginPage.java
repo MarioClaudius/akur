@@ -80,6 +80,7 @@ public class LoginPage extends AppCompatActivity {
                 if(id != -1){
                     Intent moveAkur = new Intent(LoginPage.this, MainActivity.class);
                     moveAkur.putExtra("id", id);
+
                     startActivity(moveAkur);
                     return;
                 }
