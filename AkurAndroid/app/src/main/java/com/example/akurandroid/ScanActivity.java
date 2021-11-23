@@ -95,6 +95,7 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
             //ambil gambar barcode
             ImageView barcode = bottomSheetView.findViewById(R.id.barcode);
             generateBarCode(rawResult.getText(), barcode);
+
             yesButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
