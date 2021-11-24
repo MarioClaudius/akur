@@ -42,8 +42,8 @@ public class ListScanHistoryAdapter extends RecyclerView.Adapter<ListScanHistory
         final SimpleDateFormat FORMAT_DAY_MONTH = new SimpleDateFormat("dd MMMM");
         final SimpleDateFormat FORMAT_YEAR_HOUR = new SimpleDateFormat("yyyy HH:mm");
         ScanHistory scanHistory = listHistory.get(position);
-        holder.tvReceiptNumber.setText(scanHistory.getCourierName() + " - " + scanHistory.getReceiptNumber());
-        holder.tvShipmentType.setText(scanHistory.getCourierType());
+        holder.tvShipmentName.setText(scanHistory.getCourierName() + " - " + scanHistory.getCourierType());
+        holder.tvReceiptNumber.setText(scanHistory.getReceiptNumber());
         String sDate = scanHistory.getDate();
         Date date = null;
         try {
@@ -87,13 +87,13 @@ public class ListScanHistoryAdapter extends RecyclerView.Adapter<ListScanHistory
     }
 
     public class ListViewHolder extends RecyclerView.ViewHolder{
-        TextView tvReceiptNumber, tvShipmentType, tvDayMonth, tvYearHour;
+        TextView tvReceiptNumber, tvShipmentName, tvDayMonth, tvYearHour;
         Button btnHistory;
 
         public ListViewHolder(@NonNull View itemView) {
             super(itemView);
-            tvReceiptNumber = itemView.findViewById(R.id.tv_nomor_resi_history);
-            tvShipmentType = itemView.findViewById(R.id.tv_shipment_type_history);
+            tvShipmentName = itemView.findViewById(R.id.tv_shipment_name_history);
+            tvReceiptNumber = itemView.findViewById(R.id.tv_receipt_number_history);
             tvDayMonth = itemView.findViewById(R.id.tv_day_month);
             tvYearHour = itemView.findViewById(R.id.tv_year_hour);
             btnHistory = itemView.findViewById(R.id.btn_history);

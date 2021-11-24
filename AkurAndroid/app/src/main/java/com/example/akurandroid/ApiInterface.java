@@ -47,4 +47,11 @@ public interface ApiInterface {
     @FormUrlEncoded
     @POST("/account/history")
     Call<List<ScanHistory>> getHistoryList(@Field("user_id") int id);
+
+    @GET("/account/formatresi")
+    Call<List<ScanFormat>> getFormatList();
+
+    @FormUrlEncoded
+    @POST("/account/scanresi")
+    Call<Boolean> insertScan(@Field("user_id") int id, @Field("nama_kurir") String courierName, @Field("no_resi") String receiptNumber);
 }

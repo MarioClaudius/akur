@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/bottomSheetContainer"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -47,6 +48,7 @@
         android:fontFamily="@font/comfortaa"/>
 
     <TextView
+        android:id="@+id/receipt_number"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="908949238472"
@@ -70,7 +72,7 @@
         android:id="@+id/shipment_delivery"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Si Cepat"
+        tools:text="Si Cepat"
         android:textSize="20sp"
         android:fontFamily="@font/comfortaa"
         android:layout_marginStart="20dp"
@@ -88,9 +90,10 @@
         android:textSize="18sp"/>
 
     <TextView
+        android:id="@+id/shipment_type"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="HALU"
+        tools:text="HALU"
         android:textSize="20sp"
         android:fontFamily="@font/comfortaa"
         android:layout_marginStart="20dp"

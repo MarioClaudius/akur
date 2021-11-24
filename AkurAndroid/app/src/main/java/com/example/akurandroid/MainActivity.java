@@ -127,7 +127,9 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
 
     @Override
     public void onClick(View v) {
+        int id = getIntent().getIntExtra("id", 0);
         Intent intent = new Intent(MainActivity.this, ScanActivity.class);
+        intent.putExtra("idUser", id);
         startActivity(intent);
 //        FragmentManager fm = getSupportFragmentManager();
 //        HomeFragment fragment = (HomeFragment) fm.findFragmentById(R.id.fragment_container);

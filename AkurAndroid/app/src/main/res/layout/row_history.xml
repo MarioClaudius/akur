@@ -42,23 +42,25 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
+                android:layout_marginEnd="105dp"
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/tv_nomor_resi_history"
+                    android:id="@+id/tv_shipment_name_history"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="JNE - 12890382983"
+                    android:text="JNE - Reguler"
                     android:fontFamily="@font/montserrat_semibold"
                     android:textSize="15sp"
                     android:textColor="@color/black"/>
 
                 <TextView
-                    android:id="@+id/tv_shipment_type_history"
+                    android:id="@+id/tv_receipt_number_history"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Reguler"
+                    android:text="12890382983"
                     android:fontFamily="@font/comfortaa"
+                    android:textStyle="bold"
                     android:layout_marginTop="5dp"/>
             </LinearLayout>
 
@@ -66,6 +68,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
                 android:layout_marginTop="2dp"
                 android:layout_marginEnd="5dp"
                 android:orientation="vertical">

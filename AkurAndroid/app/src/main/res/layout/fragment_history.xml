@@ -27,7 +27,7 @@
         android:id="@+id/rv_row_history"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="85dp"
         tools:listitem="@layout/row_history"
         android:layout_below="@id/layout_judul_history"/>
 

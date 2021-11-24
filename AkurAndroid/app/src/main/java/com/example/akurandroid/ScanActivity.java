@@ -31,15 +31,24 @@ import com.karumi.dexter.listener.PermissionGrantedResponse;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.single.PermissionListener;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 import static android.Manifest.permission.CAMERA;
 
 public class ScanActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler, View.OnClickListener {
+    private List<ScanFormat> formatList = new ArrayList<>();
     private TextView txtResult;
     private ZXingScannerView scannerView;
     private ImageButton flashButton;
     private boolean flashIsOn = false;
     private Bitmap mBitmap;
+    private String courierName = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,12 +103,81 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
             barcodeNumber.setTypeface(typeface);
             //ambil gambar barcode
             ImageView barcode = bottomSheetView.findViewById(R.id.barcode);
+            TextView tvShipment = bottomSheetView.findViewById(R.id.shipment_delivery);
+            TextView tvShipmentType = bottomSheetView.findViewById(R.id.shipment_type);
+            TextView tvReceiptNumber = bottomSheetView.findViewById(R.id.receipt_number);
+            tvReceiptNumber.setText(rawResult.getText());
             generateBarCode(rawResult.getText(), barcode);
+
+            ApiInterface apiInterface = RetrofitClient.getRetrofitInstance().create(ApiInterface.class);
+            Call<List<ScanFormat>> call = apiInterface.getFormatList();
+            call.enqueue(new Callback<List<ScanFormat>>() {
+                @Override
+                public void onResponse(Call<List<ScanFormat>> call, Response<List<ScanFormat>> response) {
+                    formatList = response.body();
+                    courierName = null;
+                    for(ScanFormat sf : formatList){
+                        int startIndex = sf.getStarting();
+                        int endIndex = sf.getEnding();
+                        String format = sf.getFormat();
+                        String str = rawResult.getText();
+                        String substr = str.substring(startIndex, endIndex + 1);
+                        Log.d("substr", substr);
+                        Log.d("FORMAT", "Start: " + startIndex + "\t End: " + endIndex + "\t format: " + format+ " " + sf.getNama_kurir());
+                        Log.d("SUBSTRING", str.substring(startIndex, endIndex + 1));
+                        if(rawResult.getText().substring(startIndex, endIndex + 1).equals(format)){
+                            tvShipment.setText(sf.getNama_kurir());
+                            courierName = sf.getNama_kurir();
+                            Log.d("FORMAT", sf.getNama_kurir());
+//                            tvShipmentType.setText(sf.get);
+                            return;
+                        }
+                    }
+                    if(courierName == null){
+                        tvShipment.setText("other");
+                        courierName = "other";
+                    }
+                    return;
+                }
+
+                @Override
+                public void onFailure(Call<List<ScanFormat>> call, Throwable t) {
+
+                }
+            });
 
             yesButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Toast.makeText(ScanActivity.this, "YES", Toast.LENGTH_SHORT).show();
+                    int id = getIntent().getIntExtra("idUser", 0);
+                    ApiInterface apiInterface = RetrofitClient.getRetrofitInstance().create(ApiInterface.class);
+                    Call<Boolean> call = apiInterface.insertScan(id, courierName, rawResult.getText());
+                    Log.d("RAWRESULT1", rawResult.getText());
+                    call.enqueue(new Callback<Boolean>() {
+                        @Override
+                        public void onResponse(Call<Boolean> call, Response<Boolean> response) {
+                            boolean isInserted = response.body();
+                            if(isInserted){
+                                Log.d("RAWRESULT2", rawResult.getText());
+                                Log.d("BERHASILMARIO", "" + isInserted);
+                                bottomSheetDialog.dismiss();
+                                scannerView.resumeCameraPreview(ScanActivity.this::handleResult);
+                            }
+                            else {
+                                Log.d("BERHASILMARIO", "" + isInserted);
+                                bottomSheetDialog.dismiss();
+                                scannerView.resumeCameraPreview(ScanActivity.this::handleResult);
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<Boolean> call, Throwable t) {
+                            Toast.makeText(ScanActivity.this, "Insert failed", Toast.LENGTH_SHORT).show();
+                            bottomSheetDialog.dismiss();
+                            scannerView.resumeCameraPreview(ScanActivity.this::handleResult);
+                        }
+                    });
                     bottomSheetDialog.dismiss();
                     scannerView.resumeCameraPreview(ScanActivity.this::handleResult);
 
