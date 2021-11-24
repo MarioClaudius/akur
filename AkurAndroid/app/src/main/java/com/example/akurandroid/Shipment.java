@@ -4,6 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class Shipment {
+    private int user_id;
     private String name;
     private int logo;
     private boolean appear;
@@ -30,5 +31,13 @@ public class Shipment {
 
     public void setAppear(boolean appear) {
         this.appear = appear;
+    }
+
+    public int getId() {
+        return user_id;
+    }
+
+    public void setId(int user_id) {
+        this.user_id = user_id;
     }
 }

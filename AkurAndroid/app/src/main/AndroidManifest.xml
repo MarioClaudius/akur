@@ -7,9 +7,11 @@
 
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
-    <permission android:name="android.permission.FLASHLIGHT"
+
+    <permission
+        android:name="android.permission.FLASHLIGHT"
         android:permissionGroup="android.permission-group.HARDWARE_CONTROLS"
-        android:protectionLevel="normal"/>
+        android:protectionLevel="normal" />
 
     <application
         android:allowBackup="true"
@@ -19,17 +21,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AkurAndroid"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ChangePasswordActivity"></activity>
+        <activity android:name=".DetailTrackActivity"></activity>
+        <activity android:name=".ChangePasswordActivity" />
         <activity android:name=".EditShipmentActivity" />
         <activity android:name=".EditProfileActivity" />
         <activity
             android:name=".ScanActivity"
-            android:screenOrientation="portrait"
-            android:configChanges="keyboardHidden|orientation|screenSize"/>
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".LoginPage"
-            android:screenOrientation="portrait"
-            android:configChanges="keyboardHidden|orientation|screenSize"/>
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".SplashActivity"
             android:theme="@style/Theme.AkurAndroid.NoActionBar">
@@ -41,13 +44,13 @@
         </activity>
         <activity
             android:name=".RegisterPage"
-            android:theme="@style/Theme.AkurAndroid.NoActionBar"
+            android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait"
-            android:configChanges="keyboardHidden|orientation|screenSize"/>
+            android:theme="@style/Theme.AkurAndroid.NoActionBar" />
         <activity
             android:name=".MainActivity"
-            android:screenOrientation="portrait"
             android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.AkurAndroid.NoActionBar" />
     </application>
 

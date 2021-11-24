@@ -117,7 +117,7 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
                 break;
 
             case R.id.nav_track:
-                selectedFragment = new TrackFragment();
+                selectedFragment = TrackFragment.newInstance(id);
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         selectedFragment).commit();
                 break;

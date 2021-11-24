@@ -28,6 +28,12 @@ public class ListShipmentTrackAdapter extends RecyclerView.Adapter<ListShipmentT
     public void onBindViewHolder(@NonNull ListShipmentTrackAdapter.ListViewHolder holder, int position) {
         Shipment shipment = listShipment.get(position);
         holder.imgButton.setImageResource(shipment.getLogo());
+        holder.imgButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
 
     @Override

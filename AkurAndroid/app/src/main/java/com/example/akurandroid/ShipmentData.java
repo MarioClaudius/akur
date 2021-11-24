@@ -3,6 +3,17 @@ package com.example.akurandroid;
 import java.util.ArrayList;
 
 public class ShipmentData {
+    private static int[] userId = {
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+    };
+
     private static String[] shipmentName = {
             "JNE",
             "Si Cepat",
