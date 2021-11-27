@@ -46,10 +46,12 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
         bottomNavigationView.setBackground(null);       //membuat background bottomNavigationView tidak ada
         bottomNavigationView.setOnItemSelectedListener(this::onNavigationItemSelected);
         dialog = new Dialog(this);
+        int id = getIntent().getIntExtra("id", 0);
+        HomeFragment fragment = HomeFragment.newInstance(id);
 
         floatingButton.setOnClickListener(this);
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                new HomeFragment()).commit();
+                fragment).commit();
 
         if(getIntent() != null){
             String nama = getIntent().getStringExtra("EXTRA_STORE_NAME");
@@ -74,7 +76,8 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
         int id = getIntent().getIntExtra("id", 0);
         switch(item.getItemId()){
             case R.id.nav_home:
-                selectedFragment = new HomeFragment();
+                HomeFragment fragment = HomeFragment.newInstance(id);
+                selectedFragment = fragment;
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         selectedFragment).commit();
                 break;
@@ -110,8 +113,7 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
                 break;
 
             case R.id.nav_history:
-                HistoryFragment fragment = HistoryFragment.newInstance(id);
-                selectedFragment = fragment;
+                selectedFragment = HistoryFragment.newInstance(id);
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         selectedFragment).commit();
                 break;

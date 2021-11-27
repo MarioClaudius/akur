@@ -21,7 +21,7 @@ import retrofit2.Response;
 
 public class HistoryFragment extends Fragment {
     private RecyclerView rvHistory;
-    private List<ScanHistory> list = new ArrayList<ScanHistory>();
+    private List<Scan> list = new ArrayList<Scan>();
 
     public HistoryFragment(){}
 
@@ -43,10 +43,10 @@ public class HistoryFragment extends Fragment {
         int id = getArguments().getInt("idBundle");
 //        Log.d("NGAMBIL NILAI BUNDLE ID", "" + getArguments().getInt("idBundle"));
         ApiInterface apiInterface = RetrofitClient.getRetrofitInstance().create(ApiInterface.class);
-        Call<List<ScanHistory>> call = apiInterface.getHistoryList(id);
-        call.enqueue(new Callback<List<ScanHistory>>() {
+        Call<List<Scan>> call = apiInterface.getHistoryList(id);
+        call.enqueue(new Callback<List<Scan>>() {
             @Override
-            public void onResponse(Call<List<ScanHistory>> call, Response<List<ScanHistory>> response) {
+            public void onResponse(Call<List<Scan>> call, Response<List<Scan>> response) {
                 if(response.isSuccessful()){
                     list = response.body();
                     rvHistory.setLayoutManager(new LinearLayoutManager(v.getContext()));
@@ -56,7 +56,7 @@ public class HistoryFragment extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<List<ScanHistory>> call, Throwable t) {
+            public void onFailure(Call<List<Scan>> call, Throwable t) {
 
             }
         });

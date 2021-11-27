@@ -86,9 +86,10 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:orientation="horizontal"
                 android:background="@color/background_edittext_abu">
 
                 <TextView
@@ -100,17 +101,17 @@
                     android:textColor="@color/black"
                     android:layout_marginStart="30dp"
                     android:layout_marginTop="10dp"
+                    android:layout_weight="0.5"
                     android:layout_marginBottom="10dp"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="CATEGORY"
+                    android:text="TIMESTAMP"
                     android:fontFamily="@font/montserrat_semibold"
                     android:textColor="@color/black"
-                    android:layout_toEndOf="@id/barcode_tv"
-                    android:layout_marginStart="60dp"
-                    android:layout_centerVertical="true"/>
+                    android:layout_weight="0.35"
+                    android:layout_gravity="center_vertical"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -118,16 +119,17 @@
                     android:text="DETAILS"
                     android:fontFamily="@font/montserrat_semibold"
                     android:textColor="@color/black"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
+                    android:layout_gravity="center_vertical"
                     android:layout_marginEnd="20dp"/>
 
-            </RelativeLayout>
+            </LinearLayout>
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_detail_track"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            tools:listitem="@layout/row_detail_track"/>
     </LinearLayout>
 
 </RelativeLayout>

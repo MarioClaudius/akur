@@ -1,11 +1,12 @@
 package com.example.akurandroid;
 
-public class ScanHistory {
+public class Scan {
     private int id_qr;
     private String nama_kurir;
     private String date;
     private String no_resi;
     private String jenis_kurir;
+    private String status;
 
     public int getId() {
         return id_qr;
@@ -45,5 +46,13 @@ public class ScanHistory {
 
     public void setCourierType(String jenis_kurir){
         this.jenis_kurir = jenis_kurir;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

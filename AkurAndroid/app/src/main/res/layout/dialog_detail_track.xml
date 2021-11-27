@@ -3,6 +3,7 @@
     android:layout_width="350dp"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_gravity="center">
 
     <androidx.cardview.widget.CardView
@@ -42,7 +43,7 @@
                     android:fontFamily="@font/comfortaa"/>
 
                 <TextView
-                    android:id="@+id/tv_id_qr_information"
+                    android:id="@+id/tv_id_qr_information_detail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="#30308"
@@ -70,7 +71,7 @@
                     android:fontFamily="@font/comfortaa"/>
 
                 <TextView
-                    android:id="@+id/tv_number_receipt_information"
+                    android:id="@+id/tv_number_receipt_information_detail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="908949238472"
@@ -98,7 +99,7 @@
                     android:fontFamily="@font/comfortaa"/>
 
                 <TextView
-                    android:id="@+id/tv_shipment_name_information"
+                    android:id="@+id/tv_shipment_name_information_detail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Si Cepat"
@@ -126,10 +127,66 @@
                     android:fontFamily="@font/comfortaa"/>
 
                 <TextView
-                    android:id="@+id/tv_shipment_type_information"
+                    android:id="@+id/tv_shipment_type_information_detail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="HALU"
+                    tools:text="HALU"
+                    android:fontFamily="@font/karla_regular"
+                    android:textSize="22sp"
+                    android:textColor="@color/black"
+                    android:layout_marginStart="10dp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:text="Status : "
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/comfortaa"/>
+
+                <TextView
+                    android:id="@+id/tv_status_information_detail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:text="Delivered"
+                    android:fontFamily="@font/karla_regular"
+                    android:textSize="22sp"
+                    android:textColor="@color/black"
+                    android:layout_marginStart="10dp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:text="Date : "
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/comfortaa"/>
+
+                <TextView
+                    android:id="@+id/tv_date_detail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:text="24 September 2021, 11:30"
                     android:fontFamily="@font/karla_regular"
                     android:textSize="22sp"
                     android:textColor="@color/black"
@@ -138,7 +195,7 @@
             </LinearLayout>
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_done_information"
+                android:id="@+id/btn_done_information_detail"
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"

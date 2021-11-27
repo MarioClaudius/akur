@@ -3,7 +3,6 @@ package com.example.akurandroid;
 import android.app.Dialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,16 +16,16 @@ import com.google.android.material.button.MaterialButton;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.TimeZone;
 
 public class ListScanHistoryAdapter extends RecyclerView.Adapter<ListScanHistoryAdapter.ListViewHolder> {
-    private List<ScanHistory> listHistory;
+    private List<Scan> listHistory;
     private Dialog dialog;
 
-    public ListScanHistoryAdapter(List<ScanHistory> list){
+    public ListScanHistoryAdapter(List<Scan> list){
         this.listHistory = list;
     }
 
@@ -41,10 +40,10 @@ public class ListScanHistoryAdapter extends RecyclerView.Adapter<ListScanHistory
     public void onBindViewHolder(@NonNull ListScanHistoryAdapter.ListViewHolder holder, int position) {
         final SimpleDateFormat FORMAT_DAY_MONTH = new SimpleDateFormat("dd MMMM");
         final SimpleDateFormat FORMAT_YEAR_HOUR = new SimpleDateFormat("yyyy HH:mm");
-        ScanHistory scanHistory = listHistory.get(position);
-        holder.tvShipmentName.setText(scanHistory.getCourierName() + " - " + scanHistory.getCourierType());
-        holder.tvReceiptNumber.setText(scanHistory.getReceiptNumber());
-        String sDate = scanHistory.getDate();
+        Scan scan = listHistory.get(position);
+        holder.tvShipmentName.setText(scan.getCourierName() + " - " + scan.getCourierType());
+        holder.tvReceiptNumber.setText(scan.getReceiptNumber());
+        String sDate = scan.getDate();
         Date date = null;
         try {
             date = new SimpleDateFormat("EEE MMM dd yyyy HH:mm:ss zzz", Locale.ENGLISH).parse(sDate);
@@ -66,10 +65,10 @@ public class ListScanHistoryAdapter extends RecyclerView.Adapter<ListScanHistory
                 TextView tvShipmentName = dialog.findViewById(R.id.tv_shipment_name_information);
                 TextView tvShipmentType = dialog.findViewById(R.id.tv_shipment_type_information);
                 MaterialButton doneBtn = dialog.findViewById(R.id.btn_done_information);
-                tvIdScan.setText("#" + scanHistory.getId());
-                tvNumberReceipt.setText(scanHistory.getReceiptNumber());
-                tvShipmentName.setText(scanHistory.getCourierName());
-                tvShipmentType.setText(scanHistory.getCourierType());
+                tvIdScan.setText("#" + scan.getId());
+                tvNumberReceipt.setText(scan.getReceiptNumber());
+                tvShipmentName.setText(scan.getCourierName());
+                tvShipmentType.setText(scan.getCourierType());
                 dialog.show();
                 doneBtn.setOnClickListener(new View.OnClickListener() {
                     @Override

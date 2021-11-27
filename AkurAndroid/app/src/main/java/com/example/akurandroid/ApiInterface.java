@@ -1,17 +1,12 @@
 package com.example.akurandroid;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
-import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
-import retrofit2.http.Headers;
 import retrofit2.http.POST;
-import retrofit2.http.PUT;
-import retrofit2.http.Path;
 
 public interface ApiInterface {
     @GET("/account/show")
@@ -46,7 +41,7 @@ public interface ApiInterface {
 
     @FormUrlEncoded
     @POST("/account/history")
-    Call<List<ScanHistory>> getHistoryList(@Field("user_id") int id);
+    Call<List<Scan>> getHistoryList(@Field("user_id") int id);
 
     @GET("/account/formatresi")
     Call<List<ScanFormat>> getFormatList();
@@ -54,4 +49,12 @@ public interface ApiInterface {
     @FormUrlEncoded
     @POST("/account/scanresi")
     Call<Boolean> insertScan(@Field("user_id") int id, @Field("nama_kurir") String courierName, @Field("no_resi") String receiptNumber);
+
+    @FormUrlEncoded
+    @POST("/account/datakurir")
+    Call<List<Scan>> getCourierData(@Field("user_id") int id, @Field("nama_kurir") String courierName);
+
+    @FormUrlEncoded
+    @POST("/account/apiinfo")
+    Call<Scan> getScanDetails(@Field("id_qr") int id);
 }

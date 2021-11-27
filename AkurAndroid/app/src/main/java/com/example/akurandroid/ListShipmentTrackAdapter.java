@@ -1,5 +1,7 @@
 package com.example.akurandroid;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,7 +33,10 @@ public class ListShipmentTrackAdapter extends RecyclerView.Adapter<ListShipmentT
         holder.imgButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(holder.context, DetailTrackActivity.class);
+                intent.putExtra("IdUser", shipment.getId());
+                intent.putExtra("ShipmentName", shipment.getName());
+                holder.context.startActivity(intent);
             }
         });
     }
@@ -43,10 +48,12 @@ public class ListShipmentTrackAdapter extends RecyclerView.Adapter<ListShipmentT
 
     public class ListViewHolder extends RecyclerView.ViewHolder{
         ImageButton imgButton;
+        Context context;
 
         public ListViewHolder(@NonNull View itemView) {
             super(itemView);
             imgButton = itemView.findViewById(R.id.img_btn_track);
+            context = itemView.getContext();
         }
     }
 }

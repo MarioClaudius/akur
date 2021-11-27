@@ -16,11 +16,11 @@ public class ShipmentData {
 
     private static String[] shipmentName = {
             "JNE",
-            "Si Cepat",
+            "SiCepat",
             "JNT",
             "Wahana",
             "Ninja Express",
-            "Anteraja",
+            "AnterAja",
             "ID Express",
             "Lion Parcel"
     };
