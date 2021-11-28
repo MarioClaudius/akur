@@ -78,10 +78,11 @@ public class LoginPage extends AppCompatActivity {
                 AkurAccount account = response.body();
                 int id = account.getId();
                 String username = account.getUsername();
+                Log.d("CEK USERNAME DI LOGIN", username+"!");
                 if(id != -1){
                     Intent moveAkur = new Intent(LoginPage.this, MainActivity.class);
                     moveAkur.putExtra("id", id);
-                    moveAkur.putExtra("username", username);
+                    moveAkur.putExtra("usernameIntent", username);
                     startActivity(moveAkur);
                     return;
                 }

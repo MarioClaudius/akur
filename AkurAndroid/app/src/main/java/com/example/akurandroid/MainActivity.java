@@ -47,28 +47,12 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
         bottomNavigationView.setOnItemSelectedListener(this::onNavigationItemSelected);
         dialog = new Dialog(this);
         int id = getIntent().getIntExtra("id", 0);
-        String accountUsername = getIntent().getStringExtra("username");
+        String accountUsername = getIntent().getStringExtra("usernameIntent");
         HomeFragment fragment = HomeFragment.newInstance(id, accountUsername);
 
         floatingButton.setOnClickListener(this);
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                 fragment).commit();
-
-        if(getIntent() != null){
-            String nama = getIntent().getStringExtra("EXTRA_STORE_NAME");
-            if(nama == null){
-                Log.d("MARIO1", "TIDAK ADA ISI");
-            }
-            else{
-                Log.d("MARIO2", nama);
-            }
-        }
-//        if(!EXTRA_SCAN_RESULT.equals("")){
-//            FragmentManager fm = getSupportFragmentManager();
-//            HomeFragment fragment = (HomeFragment) fm.findFragmentById(R.id.fragment_container);
-//            String result = getIntent().getStringExtra(EXTRA_SCAN_RESULT);
-//            fragment.setText(result);
-//        }
     }
 
     @Override

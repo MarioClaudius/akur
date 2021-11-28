@@ -64,7 +64,6 @@ public class HomeFragment extends Fragment {
             @Override
             public void onResponse(Call<List<Scan>> call, Response<List<Scan>> response) {
                 if(response.isSuccessful()){
-                    Log.d("HANZ", "MASUK KE ONRESPONSE");
                     list = response.body();
                     final SimpleDateFormat DATE = new SimpleDateFormat("dd MMMM yyyy");
                     Calendar calAfter = Calendar.getInstance();
@@ -75,7 +74,6 @@ public class HomeFragment extends Fragment {
                     List<Scan> newList = new ArrayList<>();
                     for(Scan s : list){
                         String sDate = s.getDate();
-                        Log.d("CEK TANGGaL", sDate);
                         Date date = null;
                         try {
                             date = new SimpleDateFormat("EEE MMM dd yyyy HH:mm:ss zzz", Locale.ENGLISH).parse(sDate);
@@ -92,7 +90,6 @@ public class HomeFragment extends Fragment {
                     for(int i = 0; i < 7 ; i++){
                         final SimpleDateFormat axisX = new SimpleDateFormat("dd/MM");
                         int count = 0;
-//            ArrayList<Entry> dataVals = new ArrayList<>();
                         Calendar cal = Calendar.getInstance();
                         cal.add(Calendar.DATE, -6 + i);
                         Date date = cal.getTime();
@@ -111,7 +108,7 @@ public class HomeFragment extends Fragment {
                         }
                         dataVals.add(new Entry(i, count));
                     }
-                    LineDataSet lineScanDataSet = new LineDataSet(dataVals, "Data set 1");
+                    LineDataSet lineScanDataSet = new LineDataSet(dataVals, "Jumlah Scan");
                     lineScanDataSet.setLineWidth(5);
                     lineScanDataSet.setDrawFilled(true);
                     lineScanDataSet.setColor(Color.CYAN);
@@ -121,12 +118,10 @@ public class HomeFragment extends Fragment {
                     LineData data = new LineData(datasets);
                     lineChart.setData(data);
                     lineChart.getXAxis().setDrawGridLines(false);
-//        lineChart.getXAxis().isGranularityEnabled(true);
                     lineChart.getXAxis().setGranularity(4f);
                     lineChart.getAxisLeft().setAxisMinimum(0f);
 
                     lineChart.invalidate();
-                    //return;
                 }
             }
 
@@ -135,61 +130,6 @@ public class HomeFragment extends Fragment {
 
             }
         });
-        Log.d("HANZ1", "KELUAR ONRESPONSE");
-//        final SimpleDateFormat DATE = new SimpleDateFormat("dd MMMM yyyy");
-//        Calendar calAfter = Calendar.getInstance();
-//        Calendar calBefore = Calendar.getInstance();
-//        calBefore.add(Calendar.DATE, -6);
-//        Date dateAfter = calAfter.getTime();
-//        Date dateBefore = calBefore.getTime();
-//        List<Scan> newList = new ArrayList<>();
-//        for(Scan s : list){
-//            String sDate = s.getDate();
-//            Log.d("CEK TANGGaL", sDate);
-//            Date date = null;
-//            try {
-//                date = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.ENGLISH).parse(sDate);
-//            } catch (ParseException e) {
-//                e.printStackTrace();
-//            }
-//            if(date.after(dateBefore) && date.before(dateAfter)){
-//                newList.add(s);
-//            }
-//        }
-//
-//        ArrayList<ILineDataSet> datasets = new ArrayList<>();
-//        ArrayList<Entry> dataVals = new ArrayList<>();
-//        for(int i = 0; i < 7 ; i++){
-//            final SimpleDateFormat axisX = new SimpleDateFormat("dd/MM");
-//            int count = 0;
-////            ArrayList<Entry> dataVals = new ArrayList<>();
-//            Calendar cal = Calendar.getInstance();
-//            cal.add(Calendar.DATE, -6 + i);
-//            Date date = cal.getTime();
-//            for(Scan s : newList){
-//                Date dateScan = null;
-//                try {
-//                    dateScan = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.ENGLISH).parse(s.getDate());
-//                } catch (ParseException e) {
-//                    e.printStackTrace();
-//                }
-//                Log.d("DATE1", DATE.format(s.getDate()));
-//                Log.d("DATE2", DATE.format(date));
-//                if(DATE.format(s.getDate()).equals(DATE.format(date))){
-//                    count++;
-//                }
-//            }
-//            dataVals.add(new Entry(i, count));
-//        }
-//        LineDataSet lineScanDataSet = new LineDataSet(dataVals, "Data set 1");
-//        datasets.add(lineScanDataSet);
-//        LineData data = new LineData(datasets);
-//        lineChart.setData(data);
-//        lineChart.getXAxis().setDrawGridLines(false);
-////        lineChart.getXAxis().isGranularityEnabled(true);
-//        lineChart.getXAxis().setGranularity(4f);
-//        lineChart.getAxisLeft().setAxisMinimum(0f);
-//        lineChart.invalidate();
         return v;
     }
 }

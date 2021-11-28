@@ -41,7 +41,12 @@ public class ListScanHistoryAdapter extends RecyclerView.Adapter<ListScanHistory
         final SimpleDateFormat FORMAT_DAY_MONTH = new SimpleDateFormat("dd MMMM");
         final SimpleDateFormat FORMAT_YEAR_HOUR = new SimpleDateFormat("yyyy HH:mm");
         Scan scan = listHistory.get(position);
-        holder.tvShipmentName.setText(scan.getCourierName() + " - " + scan.getCourierType());
+        if(scan.getCourierType() == null ||scan.getCourierType().equals("-")){
+            holder.tvShipmentName.setText(scan.getCourierName());
+        }
+        else{
+            holder.tvShipmentName.setText(scan.getCourierName() + " - " + scan.getCourierType());
+        }
         holder.tvReceiptNumber.setText(scan.getReceiptNumber());
         String sDate = scan.getDate();
         Date date = null;
