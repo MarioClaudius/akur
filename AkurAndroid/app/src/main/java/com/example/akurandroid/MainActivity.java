@@ -47,7 +47,8 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
         bottomNavigationView.setOnItemSelectedListener(this::onNavigationItemSelected);
         dialog = new Dialog(this);
         int id = getIntent().getIntExtra("id", 0);
-        HomeFragment fragment = HomeFragment.newInstance(id);
+        String accountUsername = getIntent().getStringExtra("username");
+        HomeFragment fragment = HomeFragment.newInstance(id, accountUsername);
 
         floatingButton.setOnClickListener(this);
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
@@ -74,18 +75,35 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         //Fragment selectedFragment = null;
         int id = getIntent().getIntExtra("id", 0);
+        ApiInterface apiInterface = RetrofitClient.getRetrofitInstance().create(ApiInterface.class);
+        Call<AkurAccount> call = apiInterface.getAkurAccountInfo(id);
         switch(item.getItemId()){
             case R.id.nav_home:
-                HomeFragment fragment = HomeFragment.newInstance(id);
-                selectedFragment = fragment;
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        selectedFragment).commit();
+                call.enqueue(new Callback<AkurAccount>() {
+                    @Override
+                    public void onResponse(Call<AkurAccount> call, Response<AkurAccount> response) {
+                        AkurAccount account = response.body();
+                        username = account.getUsername();
+                        selectedFragment = HomeFragment.newInstance(id, username);
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                                selectedFragment).commit();
+                    }
+
+                    @Override
+                    public void onFailure(Call<AkurAccount> call, Throwable t) {
+
+                    }
+                });
+//                HomeFragment fragment = HomeFragment.newInstance(id);
+//                selectedFragment = fragment;
+//                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+//                        selectedFragment).commit();
                 break;
 
             case R.id.nav_account:
                 Log.d("ID MARIO", "NILAI ID DI NAV ACCOUNT = " + id);
-                ApiInterface apiInterface = RetrofitClient.getRetrofitInstance().create(ApiInterface.class);
-                Call<AkurAccount> call = apiInterface.getAkurAccountInfo(id);
+//                ApiInterface apiInterface = RetrofitClient.getRetrofitInstance().create(ApiInterface.class);
+//                Call<AkurAccount> call = apiInterface.getAkurAccountInfo(id);
                 Log.d("HORE1", "MASUK KE CASE NAV ACCOUNT");
                 call.enqueue(new Callback<AkurAccount>() {
                     @Override
@@ -95,7 +113,7 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
                         store_name = account.getStoreName();
                         email = account.getEmail();
                         username = account.getUsername();
-                        int id = getIntent().getIntExtra("id", 0);
+//                        int id = getIntent().getIntExtra("id", 0);
                         if(store_name == null){
                             store_name = username;
                         }
