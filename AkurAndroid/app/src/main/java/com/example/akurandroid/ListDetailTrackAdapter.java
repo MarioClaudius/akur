@@ -72,23 +72,26 @@ public class ListDetailTrackAdapter extends RecyclerView.Adapter<ListDetailTrack
                 tvIdPacket.setText("#" + s.getId());
                 tvReceiptNumber.setText(s.getReceiptNumber());
                 tvShipmentName.setText(s.getCourierName());
-                if(s.getStatus() != null){
-                    tvShipmentStatus.setText(s.getStatus());
-                }
-                if(s.getDate() != null){
-                    String sDate = s.getDate();
-                    Date date = null;
-                    try {
-                        date = new SimpleDateFormat("EEE MMM dd yyyy HH:mm:ss zzz", Locale.ENGLISH).parse(sDate);
-                    } catch (ParseException e) {
-                        e.printStackTrace();
-                    }
-                    String datestr = FORMAT_DATE.format(date);
-                    tvDate.setText(datestr);
-                }
-                if(s.getCourierType() != null){
-                    tvShipmentType.setText(s.getCourierType());
-                }
+//                if(s.getStatus() != null && s.getCourierType() != null){
+//                    tvShipmentStatus.setText(s.getStatus());
+//                    tvShipmentType.setText(s.getCourierType());
+//
+//                }
+//                if(s.getDate() != null){
+//                    String sDate = s.getDate();
+//                    Date date = null;
+//                    try {
+//                        date = new SimpleDateFormat("EEE MMM dd yyyy HH:mm:ss zzz", Locale.ENGLISH).parse(sDate);
+//                    } catch (ParseException e) {
+//                        e.printStackTrace();
+//                    }
+//                    String datestr = FORMAT_DATE.format(date);
+//                    tvDate.setText(datestr);
+//                }
+//                if(s.getCourierType() != null && s.getStatus() != null){
+//                    tvShipmentType.setText(s.getCourierType());
+//                    tvShipmentStatus.setText(s.getStatus());
+//                }
 
                 ApiInterface apiInterface = RetrofitClient.getRetrofitInstance().create(ApiInterface.class);
                 Call<Scan> call = apiInterface.getScanDetails(s.getId());
@@ -98,6 +101,7 @@ public class ListDetailTrackAdapter extends RecyclerView.Adapter<ListDetailTrack
                         Scan scan = response.body();
                         tvShipmentType.setText(scan.getCourierType());
                         tvShipmentStatus.setText(scan.getStatus());
+                        tvDate.setText(scan.getDate());
                         String sDate = s.getDate();
                         Date date = null;
                         try {
