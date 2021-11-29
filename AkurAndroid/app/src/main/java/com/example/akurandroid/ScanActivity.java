@@ -104,7 +104,6 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
             //ambil gambar barcode
             ImageView barcode = bottomSheetView.findViewById(R.id.barcode);
             TextView tvShipment = bottomSheetView.findViewById(R.id.shipment_delivery);
-            TextView tvShipmentType = bottomSheetView.findViewById(R.id.shipment_type);
             TextView tvReceiptNumber = bottomSheetView.findViewById(R.id.receipt_number);
             tvReceiptNumber.setText(rawResult.getText());
             generateBarCode(rawResult.getText(), barcode);
@@ -122,14 +121,13 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
                         String format = sf.getFormat();
                         String str = rawResult.getText();
                         String substr = str.substring(startIndex, endIndex + 1);
-                        Log.d("substr", substr);
-                        Log.d("FORMAT", "Start: " + startIndex + "\t End: " + endIndex + "\t format: " + format+ " " + sf.getNama_kurir());
-                        Log.d("SUBSTRING", str.substring(startIndex, endIndex + 1));
+//                        Log.d("substr", substr);
+//                        Log.d("FORMAT", "Start: " + startIndex + "\t End: " + endIndex + "\t format: " + format+ " " + sf.getNama_kurir());
+//                        Log.d("SUBSTRING", str.substring(startIndex, endIndex + 1));
                         if(rawResult.getText().substring(startIndex, endIndex + 1).equals(format)){
                             tvShipment.setText(sf.getNama_kurir());
                             courierName = sf.getNama_kurir();
                             Log.d("FORMAT", sf.getNama_kurir());
-//                            tvShipmentType.setText(sf.get);
                             return;
                         }
                     }
@@ -149,7 +147,6 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
             yesButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(ScanActivity.this, "YES", Toast.LENGTH_SHORT).show();
                     int id = getIntent().getIntExtra("idUser", 0);
                     ApiInterface apiInterface = RetrofitClient.getRetrofitInstance().create(ApiInterface.class);
                     Call<Boolean> call = apiInterface.insertScan(id, courierName, rawResult.getText());
@@ -159,13 +156,12 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
                         public void onResponse(Call<Boolean> call, Response<Boolean> response) {
                             boolean isInserted = response.body();
                             if(isInserted){
-                                Log.d("RAWRESULT2", rawResult.getText());
-                                Log.d("BERHASILMARIO", "" + isInserted);
+                                Toast.makeText(ScanActivity.this, "Insert successful", Toast.LENGTH_SHORT).show();
                                 bottomSheetDialog.dismiss();
                                 scannerView.resumeCameraPreview(ScanActivity.this::handleResult);
                             }
                             else {
-                                Log.d("BERHASILMARIO", "" + isInserted);
+                                Toast.makeText(ScanActivity.this, "Barcode already exists", Toast.LENGTH_SHORT).show();
                                 bottomSheetDialog.dismiss();
                                 scannerView.resumeCameraPreview(ScanActivity.this::handleResult);
                             }
@@ -186,7 +182,6 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
             noButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(ScanActivity.this, "NO", Toast.LENGTH_SHORT).show();
                     bottomSheetDialog.dismiss();
                     scannerView.resumeCameraPreview(ScanActivity.this::handleResult);
                 }

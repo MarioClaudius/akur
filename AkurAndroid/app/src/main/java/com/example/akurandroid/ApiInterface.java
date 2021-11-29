@@ -19,7 +19,7 @@ public interface ApiInterface {
 
     @FormUrlEncoded
     @POST("/account/register")
-    Call<AkurAccount> createAkurAccount(@Field("username") String username,
+    Call<Boolean> createAkurAccount(@Field("username") String username,
                                         @Field("email") String email,
                                         @Field("password") String password);
 

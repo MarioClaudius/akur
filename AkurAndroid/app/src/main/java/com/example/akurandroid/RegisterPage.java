@@ -2,7 +2,11 @@ package com.example.akurandroid;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.DatePickerDialog;
+import android.app.Dialog;
+import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -12,6 +16,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.material.button.MaterialButton;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -32,6 +38,7 @@ public class RegisterPage extends AppCompatActivity {
     private TextView tvPrivacyPolicy;
     private Button signup;
     private TextView tvTermOfService;
+    private Dialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,8 +59,10 @@ public class RegisterPage extends AppCompatActivity {
         tvPrivacyPolicy = findViewById(R.id.privacy_policy);
         signup = findViewById(R.id.btn_signup);
         tvTermOfService = findViewById(R.id.tv_term_of_service);
+        dialog = new Dialog(this);
         checkBox.setOnClickListener(this::isChecked);
         signup.setOnClickListener(this::createAccount);
+        tvPrivacyPolicy.setOnClickListener(this::createPrivacyPolicyDialog);
     }
 
     public void isChecked(View v){
@@ -65,37 +74,46 @@ public class RegisterPage extends AppCompatActivity {
         }
     }
 
+    public void createPrivacyPolicyDialog(View v){
+//        dialog = new Dialog(this);
+        dialog.setContentView(R.layout.dialog_privacy_policy);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        MaterialButton doneBtnPrivacyPolicy = dialog.findViewById(R.id.btn_privacy_policy);
+        doneBtnPrivacyPolicy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+    }
+
     public void createAccount(View v){
         String usernameInput = edtUsername.getText().toString().trim();
         String emailInput = edtEmail.getText().toString().trim();
         String passwordInput = edtPassword.getText().toString().trim();
-        boolean isMatch = false;
-        for(AkurAccount a : LoginPage.list){
-            if(a.getUsername().equals(usernameInput) || a.getEmail().equals(emailInput)){
-                isMatch = true;
-            }
-        }
-        if(!isMatch){
-            ApiInterface apiInterface = RetrofitClient.getRetrofitInstance().create(ApiInterface.class);
-            Call<AkurAccount> call = apiInterface.createAkurAccount(usernameInput, emailInput, passwordInput);
-            call.enqueue(new Callback<AkurAccount>() {
-                @Override
-                public void onResponse(Call<AkurAccount> call, Response<AkurAccount> response) {
-                    AkurAccount akun = new AkurAccount(usernameInput, emailInput, passwordInput);
-                    LoginPage.list.add(akun);
+        ApiInterface apiInterface = RetrofitClient.getRetrofitInstance().create(ApiInterface.class);
+        Call<Boolean> call = apiInterface.createAkurAccount(usernameInput, emailInput, passwordInput);
+        call.enqueue(new Callback<Boolean>() {
+            @Override
+            public void onResponse(Call<Boolean> call, Response<Boolean> response) {
+                boolean isCreated = response.body();
+                if(isCreated){
                     Toast.makeText(RegisterPage.this, "Akun berhasil dibuat!", Toast.LENGTH_SHORT).show();
-
+                    Intent intent = new Intent(RegisterPage.this, LoginPage.class);
+                    startActivity(intent);
                 }
-
-                @Override
-                public void onFailure(Call<AkurAccount> call, Throwable t) {
-                    Log.d("ERROR: ", t.getMessage());
-                    Toast.makeText(RegisterPage.this, "Akun gagal dibuat!", Toast.LENGTH_SHORT).show();
+                else {
+                    Toast.makeText(RegisterPage.this, "Akun sudah pernah dibuat!", Toast.LENGTH_SHORT).show();
                 }
-            });
-        }
-        else{
-            Toast.makeText(RegisterPage.this, "Akun sudah pernah dibuat!", Toast.LENGTH_SHORT).show();
-        }
+            }
+
+            @Override
+            public void onFailure(Call<Boolean> call, Throwable t) {
+                Log.d("ERROR: ", t.getMessage());
+                Toast.makeText(RegisterPage.this, "Akun gagal dibuat!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 }

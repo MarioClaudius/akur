@@ -73,7 +73,13 @@ public class ListScanHistoryAdapter extends RecyclerView.Adapter<ListScanHistory
                 tvIdScan.setText("#" + scan.getId());
                 tvNumberReceipt.setText(scan.getReceiptNumber());
                 tvShipmentName.setText(scan.getCourierName());
-                tvShipmentType.setText(scan.getCourierType());
+                if(scan.getCourierType() != null){
+                    tvShipmentType.setText(scan.getCourierType());
+                }
+                else {
+                    tvShipmentType.setText("-");
+                }
+
                 dialog.show();
                 doneBtn.setOnClickListener(new View.OnClickListener() {
                     @Override

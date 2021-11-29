@@ -17,7 +17,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
@@ -25,6 +28,7 @@ import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.PercentFormatter;
+import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
@@ -108,7 +112,7 @@ public class HomeFragment extends Fragment {
                                     ArrayList<ILineDataSet> datasets = new ArrayList<>();
                                     ArrayList<Entry> dataVals = new ArrayList<>();
                                     for(int i = 0; i < 7 ; i++){
-                                        final SimpleDateFormat axisX = new SimpleDateFormat("dd/MM");
+//                                        final SimpleDateFormat axisXFormat = new SimpleDateFormat("dd/MM");
                                         int count = 0;
                                         Calendar cal = Calendar.getInstance();
                                         cal.add(Calendar.DATE, -6 + i);
@@ -126,7 +130,13 @@ public class HomeFragment extends Fragment {
                                                 count++;
                                             }
                                         }
-                                        dataVals.add(new Entry(i, count));
+                                        if(i == 8){
+                                            dataVals.add(new Entry(i , count));
+                                        }
+                                        else {
+                                            dataVals.add(new Entry(i  , count));
+                                        }
+//                                        dataVals.add(new Entry(i - 0.5f, (float) count));
                                     }
                                     LineDataSet lineScanDataSet = new LineDataSet(dataVals, "Jumlah Scan");
                                     lineScanDataSet.setLineWidth(5);
@@ -137,9 +147,25 @@ public class HomeFragment extends Fragment {
                                     datasets.add(lineScanDataSet);
                                     LineData data = new LineData(datasets);
                                     lineChart.setData(data);
-                                    lineChart.getXAxis().setDrawGridLines(false);
-                                    lineChart.getXAxis().setGranularity(4f);
-                                    lineChart.getAxisLeft().setAxisMinimum(0f);
+                                    XAxis xAxis = lineChart.getXAxis();
+                                    YAxis yAxis= lineChart.getAxisLeft();
+                                    xAxis.setDrawGridLines(false);
+                                    xAxis.setGranularity(0.5f);
+//                                    xAxis.setAxisMaximum(7.5f);
+                                    yAxis.setGranularity(1);
+                                    xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+                                    yAxis.setAxisMinimum(0f);
+                                    xAxis.setValueFormatter(new ValueFormatter() {
+                                        @Override
+                                        public String getAxisLabel(float value, AxisBase axis) {
+                                            final SimpleDateFormat axisXFormat = new SimpleDateFormat("dd/MM");
+                                            Calendar cal = Calendar.getInstance();
+                                            Integer position = Math.round(value);
+                                            cal.add(Calendar.DATE, -6 + position);
+                                            Date dateAxis = cal.getTime();
+                                            return axisXFormat.format(dateAxis);
+                                        }
+                                    });
                                     lineChart.invalidate();
                                 }
                             });
