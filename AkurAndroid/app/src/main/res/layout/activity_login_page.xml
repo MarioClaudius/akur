@@ -91,16 +91,16 @@
             android:text="@string/password"
             android:fontFamily="@font/comfortaa"/>
 
-        <TextView
-            android:id="@+id/tv_forgot_password"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/forgot_password"
-            android:fontFamily="@font/comfortaa"
-            android:textSize="16sp"
-            android:layout_marginEnd="20dp"
-            android:layout_alignParentEnd="true"
-            android:textColor="@color/hijau_logo"/>
+<!--        <TextView-->
+<!--            android:id="@+id/tv_forgot_password"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="@string/forgot_password"-->
+<!--            android:fontFamily="@font/comfortaa"-->
+<!--            android:textSize="16sp"-->
+<!--            android:layout_marginEnd="20dp"-->
+<!--            android:layout_alignParentEnd="true"-->
+<!--            android:textColor="@color/hijau_logo"/>-->
         <!--            android:onClick=""-->
 
 

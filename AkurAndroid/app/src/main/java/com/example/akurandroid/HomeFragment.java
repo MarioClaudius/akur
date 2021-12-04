@@ -1,5 +1,6 @@
 package com.example.akurandroid;
 
+import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -18,6 +20,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.AxisBase;
+import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
@@ -73,6 +76,7 @@ public class HomeFragment extends Fragment {
         lineChart = v.findViewById(R.id.line_chart);
         pieChart = v.findViewById(R.id.pie_chart);
         TextView tvUsername = v.findViewById(R.id.tv_nama_user_home);
+        TextView tvTotalProductToday = v.findViewById(R.id.tv_total_product_today);
         String username = getArguments().getString("usernameBundle");
         tvUsername.setText(username + "!");
         ApiInterface apiInterface = RetrofitClient.getRetrofitInstance().create(ApiInterface.class);
@@ -106,11 +110,16 @@ public class HomeFragment extends Fragment {
                     Thread lineChartThread = new Thread(new Runnable() {
                         @Override
                         public void run() {
+                            if(getActivity() == null){
+                                return;
+                            }
                             getActivity().runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
                                     ArrayList<ILineDataSet> datasets = new ArrayList<>();
                                     ArrayList<Entry> dataVals = new ArrayList<>();
+                                    int max = 0;
+                                    int scanToday;
                                     for(int i = 0; i < 7 ; i++){
 //                                        final SimpleDateFormat axisXFormat = new SimpleDateFormat("dd/MM");
                                         int count = 0;
@@ -130,18 +139,21 @@ public class HomeFragment extends Fragment {
                                                 count++;
                                             }
                                         }
-                                        if(i == 8){
-                                            dataVals.add(new Entry(i , count));
+                                        if(max < count){
+                                            max = count;
                                         }
-                                        else {
+                                        if(i == 6){
+                                            tvTotalProductToday.setText(count + " Products");
+                                        }
+//                                        else {
                                             dataVals.add(new Entry(i  , count));
-                                        }
+//                                        }
 //                                        dataVals.add(new Entry(i - 0.5f, (float) count));
                                     }
                                     LineDataSet lineScanDataSet = new LineDataSet(dataVals, "Jumlah Scan");
                                     lineScanDataSet.setLineWidth(5);
                                     lineScanDataSet.setDrawFilled(true);
-                                    lineScanDataSet.setColor(Color.CYAN);
+                                    lineScanDataSet.setColor(getResources().getColor(R.color.garis_linechart));
                                     lineScanDataSet.setMode(LineDataSet.Mode.CUBIC_BEZIER);
                                     lineScanDataSet.setCubicIntensity(0.2f);
                                     datasets.add(lineScanDataSet);
@@ -155,6 +167,9 @@ public class HomeFragment extends Fragment {
                                     yAxis.setGranularity(1);
                                     xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
                                     yAxis.setAxisMinimum(0f);
+                                    yAxis.setAxisMaximum(max + 0.25f * max);
+                                    yAxis.setEnabled(false);
+                                    lineChart.getAxisRight().setEnabled(false);
                                     xAxis.setValueFormatter(new ValueFormatter() {
                                         @Override
                                         public String getAxisLabel(float value, AxisBase axis) {
@@ -166,6 +181,14 @@ public class HomeFragment extends Fragment {
                                             return axisXFormat.format(dateAxis);
                                         }
                                     });
+                                    Description description = lineChart.getDescription();;
+                                    description.setText("Statistik Penjualan");
+                                    description.setTextSize(18);
+                                    Typeface montserrat = ResourcesCompat.getFont(getContext(), R.font.montserrat_regular);
+                                    description.setTypeface(montserrat);
+                                    lineChart.getDescription().setPosition(500f, 70f);
+                                    lineChart.setDrawBorders(false);
+                                    lineChart.setBackgroundColor(getResources().getColor(R.color.background_biru_linechart));
                                     lineChart.invalidate();
                                 }
                             });
@@ -177,11 +200,18 @@ public class HomeFragment extends Fragment {
                     Thread pieChartThread = new Thread(new Runnable() {
                         @Override
                         public void run() {
+                            if(getActivity() == null){
+                                return;
+                            }
                             getActivity().runOnUiThread(new Runnable() {
+                                @SuppressLint("ResourceType")
                                 @Override
                                 public void run() {
                                     ArrayList<PieEntry> pieEntries = new ArrayList<>();
                                     ArrayList<Integer> colors = new ArrayList<>();
+//                                    for(int color: ColorTemplate.VORDIPLOM_COLORS){
+//                                        colors.add(color);
+//                                    }
                                     for(int color: ColorTemplate.MATERIAL_COLORS){
                                         colors.add(color);
                                     }
@@ -212,7 +242,7 @@ public class HomeFragment extends Fragment {
                                     pieChart.setDrawHoleEnabled(true);
                                     pieChart.setUsePercentValues(true);
                                     pieChart.setEntryLabelColor(Color.BLACK);
-                                    pieChart.setCenterText("Shipment Frequently Used");
+//                                    pieChart.setCenterText("Shipment Frequently Used");
                                     pieChart.setCenterTextSize(20);
                                     Typeface comfortaa = ResourcesCompat.getFont(getContext(), R.font.comfortaa);
                                     pieChart.setCenterTextTypeface(comfortaa);
@@ -224,6 +254,7 @@ public class HomeFragment extends Fragment {
                                     l.setWordWrapEnabled(true);
                                     l.setFormToTextSpace(2);
                                     pieChart.setData(pieData);
+                                    pieChart.setBackgroundColor(getResources().getColor(R.color.background_krem_piechart));
                                     pieChart.setRotationEnabled(true);
                                     pieChart.invalidate();
                                 }

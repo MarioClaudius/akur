@@ -2,7 +2,8 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -56,9 +57,10 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Welcome back, "
-                        android:textSize="20sp"
+                        android:text="Hello, "
+                        android:textSize="25sp"
                         android:fontFamily="@font/comfortaa"
+                        android:textStyle="bold"
                         android:textColor="@color/black"/>
 
                     <TextView
@@ -66,7 +68,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="User!"
-                        android:textSize="20sp"
+                        android:textSize="25sp"
                         android:textColor="@color/orange"
                         android:fontFamily="@font/comfortaa"/>
 
@@ -75,8 +77,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="This is your statistic.."
-                    android:textColor="@color/black"
+                    android:text="How is Your Day ?"
                     android:textSize="20sp"
                     android:fontFamily="@font/comfortaa"/>
             </LinearLayout>
@@ -90,27 +91,108 @@
 
         </LinearLayout>
 
-        <com.github.mikephil.charting.charts.LineChart
-            android:id="@+id/line_chart"
-            android:layout_width="match_parent"
-            android:layout_margin="20dp"
-            android:elevation="2dp"
-            android:clipToPadding="false"
-            android:outlineProvider="bounds"
-            android:background="@drawable/rounder_corner_layout"
-            android:layout_height="350dp"/>
-
-        <com.github.mikephil.charting.charts.PieChart
-            android:id="@+id/pie_chart"
-            android:layout_width="match_parent"
-            android:layout_height="350dp"
-            android:elevation="2dp"
-            android:outlineProvider="bounds"
-            android:background="@drawable/rounder_corner_layout"
-            android:clipToPadding="false"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sales Revenue"
+            android:fontFamily="@font/montserrat_bold"
+            android:textStyle="bold"
+            android:textColor="@color/black"
             android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="85dp"/>
+            android:layout_marginTop="20dp"
+            android:textSize="18sp"/>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            app:cardCornerRadius="20dp"
+            android:backgroundTint="@color/background_hijau_muda"
+            android:elevation="4dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/discount_logo"
+                    android:layout_margin="30dp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="vertical"
+                    android:layout_marginEnd="30dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Total Order Today"
+                        android:textSize="18sp"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:textColor="@color/black"
+                        android:gravity="center"/>
+
+                    <TextView
+                        android:id="@+id/tv_total_product_today"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        tools:text="512 Products"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:gravity="center"
+                        android:textColor="@color/black"
+                        android:textSize="25sp"/>
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Statistic"
+            android:fontFamily="@font/montserrat_bold"
+            android:textColor="@color/black"
+            android:layout_marginStart="20dp"
+            android:textSize="18sp"/>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/background_biru_linechart"
+            app:cardCornerRadius="20dp"
+            android:elevation="4dp"
+            android:layout_margin="20dp">
+
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/line_chart"
+                android:layout_width="match_parent"
+                android:layout_margin="10dp"
+                android:layout_height="200dp"/>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/background_krem_piechart"
+            app:cardCornerRadius="20dp"
+            android:elevation="4dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="85dp"
+            android:layout_marginEnd="20dp">
+
+            <com.github.mikephil.charting.charts.PieChart
+                android:id="@+id/pie_chart"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"/>
+        </androidx.cardview.widget.CardView>
     </LinearLayout>
 
 </ScrollView>
