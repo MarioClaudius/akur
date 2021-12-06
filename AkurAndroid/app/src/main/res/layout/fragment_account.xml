@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
 
     <LinearLayout
@@ -41,7 +42,7 @@
             android:id="@+id/store_logo"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:src="@drawable/toko_bagus_alip"
+            android:src="@drawable/icon_profile"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="16dp"
             android:layout_centerVertical="true"/>
@@ -62,10 +63,10 @@
                 android:layout_marginTop="18dp"/>
 
             <TextView
-                android:id="@+id/store_join"
+                android:id="@+id/store_phone_number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Joined 2015"
+                tools:text="08123456789"
                 android:textColor="@color/black"
                 android:fontFamily="@font/comfortaa"/>
 
@@ -247,8 +248,4 @@
 
         </RelativeLayout>
     </LinearLayout>
-
-
-
-
 </LinearLayout>

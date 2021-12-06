@@ -26,7 +26,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class AccountFragment extends Fragment implements View.OnClickListener {
     private CircleImageView storeLogo;
     private TextView tvStoreName;
-    private TextView tvStoreJoin;
+    private TextView tvStorePhoneNumber;
     private Button btnEditProfile;
     private Button btnEditShipment;
     private Button btnChangePassword;
@@ -38,15 +38,14 @@ public class AccountFragment extends Fragment implements View.OnClickListener {
 
     }
 
-    public static AccountFragment newInstance(int id, String storeName, String username, String email){
+    public static AccountFragment newInstance(int id, String storeName, String username, String email, String phoneNumber){
         AccountFragment fragment = new AccountFragment();
         Bundle args = new Bundle();
         args.putInt("idBundle", id);
-        Log.d("ID MARIO1", "NILAI ID DI BUNDLE = " + id);
         args.putString("storeBundle", storeName);
         args.putString("usernameBundle", username);
         args.putString("emailBundle", email);
-        Log.d("Masukkin ke BUNDLE", storeName + username + email);
+        args.putString("phoneNumberBundle", phoneNumber);
         fragment.setArguments(args);
         return fragment;
     }
@@ -61,7 +60,7 @@ public class AccountFragment extends Fragment implements View.OnClickListener {
         View v = inflater.inflate(R.layout.fragment_account, container, false);
         storeLogo = v.findViewById(R.id.store_logo);
         tvStoreName = v.findViewById(R.id.store_name);
-        tvStoreJoin = v.findViewById(R.id.store_join);
+        tvStorePhoneNumber = v.findViewById(R.id.store_phone_number);
         btnEditProfile = v.findViewById(R.id.btn_edit_profile);
         btnEditShipment = v.findViewById(R.id.btn_edit_shipment);
         btnChangePassword = v.findViewById(R.id.btn_change_password);
@@ -75,7 +74,7 @@ public class AccountFragment extends Fragment implements View.OnClickListener {
             this.namaToko = getArguments().getString("storeBundle");
         }
         tvStoreName.setText(this.namaToko);
-        Log.d("SET NAMA TOKO", namaToko);
+        tvStorePhoneNumber.setText(getArguments().getString("phoneNumberBundle"));
         return v;
     }
 
@@ -87,6 +86,7 @@ public class AccountFragment extends Fragment implements View.OnClickListener {
                 intent = new Intent(getActivity(), EditProfileActivity.class);
                 intent.putExtra("idEdit", getArguments().getInt("idBundle"));
                 intent.putExtra("storeEdit", getArguments().getString("storeBundle"));
+                intent.putExtra("phoneNumberEdit", getArguments().getString("phoneNumberBundle"));
                 startActivity(intent);
                 break;
 
@@ -121,7 +121,6 @@ public class AccountFragment extends Fragment implements View.OnClickListener {
             public void onClick(View v) {
                 dialog.dismiss();
                 Intent intent = new Intent(getActivity(), LoginPage.class);
-                //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
             }
         });
@@ -138,8 +137,6 @@ public class AccountFragment extends Fragment implements View.OnClickListener {
     }
 
     public void onBackPressed(){
-
         getActivity().moveTaskToBack(true);
-
     }
 }

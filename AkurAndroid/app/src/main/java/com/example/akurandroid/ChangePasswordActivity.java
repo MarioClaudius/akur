@@ -26,6 +26,7 @@ public class ChangePasswordActivity extends AppCompatActivity implements View.On
     private ImageButton oldPasswordBtn;
     private ImageButton newPasswordBtn;
     private ImageButton confirmPasswordBtn;
+    private ImageButton backBtn;
     private Button confirm;
     Handler handler;
 
@@ -41,10 +42,12 @@ public class ChangePasswordActivity extends AppCompatActivity implements View.On
         newPasswordBtn = findViewById(R.id.btn_new_password);
         confirmPasswordBtn = findViewById(R.id.btn_confirm_password);
         confirm = findViewById(R.id.btn_confirm_changepw);
+        backBtn = findViewById(R.id.back_btn_change_password);
         confirm.setOnClickListener(this::comparePassword);
         oldPasswordBtn.setOnClickListener(this);
         newPasswordBtn.setOnClickListener(this);
         confirmPasswordBtn.setOnClickListener(this);
+        backBtn.setOnClickListener(this);
     }
 
     public void comparePassword(View v){
@@ -99,6 +102,10 @@ public class ChangePasswordActivity extends AppCompatActivity implements View.On
 
             case R.id.btn_confirm_password:
                 changeInputType(confirmPasswordEdt, confirmPasswordBtn);
+                break;
+
+            case R.id.back_btn_change_password:
+                onBackPressed();
                 break;
         }
     }

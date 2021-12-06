@@ -102,13 +102,14 @@
             android:layout_marginTop="20dp"
             android:textSize="18sp"/>
 
-        <androidx.cardview.widget.CardView
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
             app:cardCornerRadius="20dp"
             android:backgroundTint="@color/background_hijau_muda"
-            android:elevation="4dp">
+            app:strokeWidth="1dp"
+            app:strokeColor="@color/abu">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -144,11 +145,11 @@
                         tools:text="512 Products"
                         android:fontFamily="@font/montserrat_bold"
                         android:gravity="center"
-                        android:textColor="@color/black"
+                        android:textColor="@color/hijau_logo"
                         android:textSize="25sp"/>
                 </LinearLayout>
             </LinearLayout>
-        </androidx.cardview.widget.CardView>
+        </com.google.android.material.card.MaterialCardView>
 
         <TextView
             android:layout_width="wrap_content"
@@ -164,7 +165,7 @@
             android:layout_height="wrap_content"
             android:backgroundTint="@color/background_biru_linechart"
             app:cardCornerRadius="20dp"
-            android:elevation="4dp"
+            app:cardElevation="10dp"
             android:layout_margin="20dp">
 
             <com.github.mikephil.charting.charts.LineChart
@@ -177,9 +178,9 @@
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/background_krem_piechart"
+            android:backgroundTint="@color/background_piechart"
             app:cardCornerRadius="20dp"
-            android:elevation="4dp"
+            app:cardElevation="10dp"
             android:layout_gravity="center"
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"

@@ -15,8 +15,8 @@
     <color name="red">#FF2800</color>
     <color name="orange">#FFAC04</color>
     <color name="red_dialog">#C62828</color>
-    <color name="background_hijau_muda">#EBFAD1</color>
-    <color name="background_biru_linechart">#DEEAF4</color>
-    <color name="background_krem_piechart">#FAD6BA</color>
+    <color name="background_hijau_muda">#FFFFFF</color>
+    <color name="background_biru_linechart">#FFFFFF</color>
+    <color name="background_piechart">#FFFFFF</color>
     <color name="garis_linechart">#B5B3F9</color>
 </resources>

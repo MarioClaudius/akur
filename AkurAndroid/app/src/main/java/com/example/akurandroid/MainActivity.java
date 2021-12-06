@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
     String store_name;
     String email;
     String username;
+    String phoneNumber;
     BottomNavigationView bottomNavigationView;
     FloatingActionButton floatingButton;
     private Dialog dialog;
@@ -83,10 +84,14 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
                         store_name = account.getStoreName();
                         email = account.getEmail();
                         username = account.getUsername();
+                        phoneNumber = account.getPhoneNumber();
                         if(store_name == null){
                             store_name = username;
                         }
-                        AccountFragment fragment = AccountFragment.newInstance(id, store_name, username, email);
+                        if(phoneNumber == null){
+                            phoneNumber = "";
+                        }
+                        AccountFragment fragment = AccountFragment.newInstance(id, store_name, username, email, phoneNumber);
                         selectedFragment = fragment;
                         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                                 selectedFragment).commit();

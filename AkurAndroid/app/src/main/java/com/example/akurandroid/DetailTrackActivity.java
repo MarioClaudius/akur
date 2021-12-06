@@ -4,7 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.media.Image;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,6 +20,7 @@ import retrofit2.Response;
 
 public class DetailTrackActivity extends AppCompatActivity {
     private RecyclerView rvDetailTrack;
+    private ImageButton backBtn;
     private List<Scan> list = new ArrayList<Scan>();
 
     @Override
@@ -24,6 +28,8 @@ public class DetailTrackActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_track);
 
+        backBtn = findViewById(R.id.back_btn_detail_track);
+        backBtn.setOnClickListener(this::back);
         rvDetailTrack = findViewById(R.id.rv_detail_track);
         rvDetailTrack.setHasFixedSize(true);
         int id = getIntent().getIntExtra("IdUser", 0);
@@ -48,5 +54,9 @@ public class DetailTrackActivity extends AppCompatActivity {
                 Toast.makeText(DetailTrackActivity.this, "Fetch data failed", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    public void back(View v){
+        onBackPressed();
     }
 }

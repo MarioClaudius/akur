@@ -39,6 +39,7 @@ public class EditProfileActivity extends AppCompatActivity {
         saveButton = findViewById(R.id.btn_save_editprofile);
         logo = findViewById(R.id.store_logo_editprofile);
         edtUsernameEditProfile.setText(getIntent().getStringExtra("storeEdit"));
+        edtPhoneNumberEditProfile.setText(getIntent().getStringExtra("phoneNumberEdit"));
 
         backButton.setOnClickListener(this::backToAccountActivity);
         saveButton.setOnClickListener(this::saveInformation);

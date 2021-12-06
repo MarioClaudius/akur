@@ -174,9 +174,7 @@
             android:clickable="true"
             android:onClick="goToRegisterPage"
             tools:ignore="UsingOnClickInXml"
-            android:focusable="true"
-            android:foreground="?android:attr/selectableItemBackgroundBorderless"/>
-
+            android:focusable="true" />
 
     </LinearLayout>
 

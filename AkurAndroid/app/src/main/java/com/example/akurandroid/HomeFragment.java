@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -55,6 +56,8 @@ public class HomeFragment extends Fragment {
     private LineChart lineChart;
     private PieChart pieChart;
     private List<Scan> list = new ArrayList<Scan>();
+    private float screenWidthdp;
+    private float screenHeightdp;
 
     public HomeFragment(){}
 
@@ -78,6 +81,10 @@ public class HomeFragment extends Fragment {
         TextView tvTotalProductToday = v.findViewById(R.id.tv_total_product_today);
         String username = getArguments().getString("usernameBundle");
         tvUsername.setText(username + "!");
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        getActivity().getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        screenWidthdp = displayMetrics.widthPixels / displayMetrics.density;
+        screenHeightdp = displayMetrics.heightPixels / displayMetrics.density;
         ApiInterface apiInterface = RetrofitClient.getRetrofitInstance().create(ApiInterface.class);
         Call<List<Scan>> call = apiInterface.getHistoryList(id);
         call.enqueue(new Callback<List<Scan>>() {
@@ -180,7 +187,7 @@ public class HomeFragment extends Fragment {
                                     description.setTextSize(18);
                                     Typeface montserrat = ResourcesCompat.getFont(getContext(), R.font.montserrat_regular);
                                     description.setTypeface(montserrat);
-                                    lineChart.getDescription().setPosition(500f, 70f);
+                                    lineChart.getDescription().setPosition(screenWidthdp + 100f, 40f);
                                     lineChart.setDrawBorders(false);
                                     lineChart.setBackgroundColor(getResources().getColor(R.color.background_biru_linechart));
                                     lineChart.invalidate();
@@ -243,7 +250,8 @@ public class HomeFragment extends Fragment {
                                     l.setWordWrapEnabled(true);
                                     l.setFormToTextSpace(2);
                                     pieChart.setData(pieData);
-                                    pieChart.setBackgroundColor(getResources().getColor(R.color.background_krem_piechart));
+                                    pieChart.setBackgroundColor(getResources().getColor(R.color.background_piechart));
+                                    pieChart.setHoleColor(getResources().getColor(R.color.background_piechart));
                                     pieChart.setRotationEnabled(true);
                                     pieChart.invalidate();
                                 }
