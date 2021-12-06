@@ -48,14 +48,11 @@ public class EditProfileActivity extends AppCompatActivity {
         String storeName = edtUsernameEditProfile.getText().toString();
         String phoneNumber = edtPhoneNumberEditProfile.getText().toString();
         int id = getIntent().getIntExtra("idEdit", 0);
-        Log.d("INFO", id+ "" + storeName + phoneNumber);
         ApiInterface apiInterface = RetrofitClient.getRetrofitInstance().create(ApiInterface.class);
         Call<Boolean> call = apiInterface.updateAkurAccountInfo(id, storeName, phoneNumber);
-        Log.d("HORE1", "MASUK KE METHOD");
         call.enqueue(new Callback<Boolean>() {
             @Override
             public void onResponse(Call<Boolean> call, Response<Boolean> response) {
-                Log.d("HORE1", "MASUK KE onRESPONSE");
                 boolean isSuccess = response.body();
                 if(isSuccess){
                     Toast.makeText(EditProfileActivity.this, "Update berhasil dilakukan", Toast.LENGTH_SHORT).show();
@@ -80,19 +77,6 @@ public class EditProfileActivity extends AppCompatActivity {
                 Toast.makeText(EditProfileActivity.this, "Masuk onFailure", Toast.LENGTH_SHORT).show();
             }
         });
-//        if(storeName != null){
-//            Intent intent = new Intent(EditProfileActivity.this, MainActivity.class);
-//            Log.d("MARIO", storeName);
-//            intent.putExtra("EXTRA_STORE_NAME", storeName);
-//            startActivity(intent);
-//        }
-//        Intent intent = new Intent(EditProfileActivity.this, MainActivity.class);
-//        intent.putExtra("EXTRA_STORE_NAME", storeName);
-//        startActivity(intent);
-//        Bundle bundle = new Bundle();
-//        bundle.putString("store", storeName);
-//        AccountFragment fragment = new AccountFragment();
-//        fragment.setArguments(bundle);
     }
 
     public void backToAccountActivity(View v){

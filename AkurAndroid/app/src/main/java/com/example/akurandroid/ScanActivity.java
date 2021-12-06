@@ -121,9 +121,6 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
                         String format = sf.getFormat();
                         String str = rawResult.getText();
                         String substr = str.substring(startIndex, endIndex + 1);
-//                        Log.d("substr", substr);
-//                        Log.d("FORMAT", "Start: " + startIndex + "\t End: " + endIndex + "\t format: " + format+ " " + sf.getNama_kurir());
-//                        Log.d("SUBSTRING", str.substring(startIndex, endIndex + 1));
                         if(rawResult.getText().substring(startIndex, endIndex + 1).equals(format)){
                             tvShipment.setText(sf.getNama_kurir());
                             courierName = sf.getNama_kurir();
@@ -161,7 +158,7 @@ public class ScanActivity extends AppCompatActivity implements ZXingScannerView.
                                 scannerView.resumeCameraPreview(ScanActivity.this::handleResult);
                             }
                             else {
-                                Toast.makeText(ScanActivity.this, "Barcode already exists", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(ScanActivity.this, "Barcode already exists / Barcode invalid", Toast.LENGTH_SHORT).show();
                                 bottomSheetDialog.dismiss();
                                 scannerView.resumeCameraPreview(ScanActivity.this::handleResult);
                             }

@@ -1,8 +1,6 @@
 package com.example.akurandroid;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,7 +24,6 @@ public class TrackFragment extends Fragment {
         TrackFragment fragment = new TrackFragment();
         Bundle args = new Bundle();
         args.putInt("idBundle", id);
-        Log.d("MASUKKIN KE BUNDLE", ""+id);
         fragment.setArguments(args);
         return fragment;
     }

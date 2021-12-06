@@ -17,7 +17,6 @@ public class EditShipmentActivity extends AppCompatActivity implements View.OnCl
     private RecyclerView rvEditShipment;
     private ImageButton backButton;
     private ArrayList<Shipment> list = new ArrayList<Shipment>();
-    private ArrayList<Shipment> newList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +31,6 @@ public class EditShipmentActivity extends AppCompatActivity implements View.OnCl
         rvEditShipment.setLayoutManager(new LinearLayoutManager(this));
         ListShipmentAdapter listShipmentAdapter = new ListShipmentAdapter(list);
         rvEditShipment.setAdapter(listShipmentAdapter);
-        //rvEditShipment.suppressLayout(true);          //disable scroll in recyclerview
         backButton.setOnClickListener(this);
     }
 

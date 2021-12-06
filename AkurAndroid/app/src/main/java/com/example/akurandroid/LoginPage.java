@@ -44,7 +44,6 @@ public class LoginPage extends AppCompatActivity {
         String passwordInput = edtPassword.getText().toString().trim();
         ApiInterface apiInterface = RetrofitClient.getRetrofitInstance().create(ApiInterface.class);
         Call<AkurAccount> call = apiInterface.getAkurAccountId(usernameInput, passwordInput);
-        Log.d("ID_MARIO1", "Masuk method");
         call.enqueue(new Callback<AkurAccount>() {
             @Override
             public void onResponse(Call<AkurAccount> call, Response<AkurAccount> response) {
@@ -67,7 +66,6 @@ public class LoginPage extends AppCompatActivity {
             @Override
             public void onFailure(Call<AkurAccount> call, Throwable t) {
                 Toast.makeText(LoginPage.this, "Login gagal", Toast.LENGTH_SHORT).show();
-                Log.d("ERROR: ", t.getMessage());
             }
         });
     }

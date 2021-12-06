@@ -16,7 +16,6 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.material.button.MaterialButton;
 
@@ -84,7 +83,6 @@ public class RegisterPage extends AppCompatActivity {
     }
 
     public void createPrivacyPolicyDialog(View v){
-//        dialog = new Dialog(this);
         dialog.setContentView(R.layout.dialog_privacy_policy);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         MaterialButton doneBtnPrivacyPolicy = dialog.findViewById(R.id.btn_privacy_policy);
@@ -199,7 +197,6 @@ public class RegisterPage extends AppCompatActivity {
                         }
                     });
                     dialog.show();
-//                    Toast.makeText(RegisterPage.this, "Akun gagal dibuat!", Toast.LENGTH_SHORT).show();
                 }
             });
         }

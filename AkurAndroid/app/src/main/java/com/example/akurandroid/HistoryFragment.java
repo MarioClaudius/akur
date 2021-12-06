@@ -29,7 +29,6 @@ public class HistoryFragment extends Fragment {
         HistoryFragment fragment = new HistoryFragment();
         Bundle args = new Bundle();
         args.putInt("idBundle", id);
-        Log.d("MASUKKIN KE BUNDLE", ""+id);
         fragment.setArguments(args);
         return fragment;
     }
@@ -41,7 +40,6 @@ public class HistoryFragment extends Fragment {
         rvHistory = v.findViewById(R.id.rv_row_history);
         rvHistory.setHasFixedSize(true);
         int id = getArguments().getInt("idBundle");
-//        Log.d("NGAMBIL NILAI BUNDLE ID", "" + getArguments().getInt("idBundle"));
         ApiInterface apiInterface = RetrofitClient.getRetrofitInstance().create(ApiInterface.class);
         Call<List<Scan>> call = apiInterface.getHistoryList(id);
         call.enqueue(new Callback<List<Scan>>() {

@@ -72,26 +72,6 @@ public class ListDetailTrackAdapter extends RecyclerView.Adapter<ListDetailTrack
                 tvIdPacket.setText("#" + s.getId());
                 tvReceiptNumber.setText(s.getReceiptNumber());
                 tvShipmentName.setText(s.getCourierName());
-//                if(s.getStatus() != null && s.getCourierType() != null){
-//                    tvShipmentStatus.setText(s.getStatus());
-//                    tvShipmentType.setText(s.getCourierType());
-//
-//                }
-//                if(s.getDate() != null){
-//                    String sDate = s.getDate();
-//                    Date date = null;
-//                    try {
-//                        date = new SimpleDateFormat("EEE MMM dd yyyy HH:mm:ss zzz", Locale.ENGLISH).parse(sDate);
-//                    } catch (ParseException e) {
-//                        e.printStackTrace();
-//                    }
-//                    String datestr = FORMAT_DATE.format(date);
-//                    tvDate.setText(datestr);
-//                }
-//                if(s.getCourierType() != null && s.getStatus() != null){
-//                    tvShipmentType.setText(s.getCourierType());
-//                    tvShipmentStatus.setText(s.getStatus());
-//                }
 
                 ApiInterface apiInterface = RetrofitClient.getRetrofitInstance().create(ApiInterface.class);
                 Call<Scan> call = apiInterface.getScanDetails(s.getId());
@@ -118,17 +98,6 @@ public class ListDetailTrackAdapter extends RecyclerView.Adapter<ListDetailTrack
 
                     }
                 });
-//                tvShipmentType.setText(s.getCourierType());
-//                tvShipmentStatus.setText(s.getStatus());
-//                String sDate = s.getDate();
-//                Date date = null;
-//                try {
-//                    date = new SimpleDateFormat("yyyy-MM-dd yyyy HH:mm:ss", Locale.ENGLISH).parse(sDate);
-//                } catch (ParseException e) {
-//                    e.printStackTrace();
-//                }
-//                String datestr = FORMAT_DATE.format(date);
-//                tvDate.setText(datestr);
                 dialog.show();
                 doneBtn.setOnClickListener(new View.OnClickListener() {
                     @Override

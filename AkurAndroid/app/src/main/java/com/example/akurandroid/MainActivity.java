@@ -1,12 +1,9 @@
 package com.example.akurandroid;
-//test this comment for bagus
+
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
@@ -26,8 +23,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity implements NavigationBarView.OnItemSelectedListener, View.OnClickListener {
-    public static final String EXTRA_SCAN_RESULT = "";
-    public static final String EXTRA_STORE_NAME = "NO NAME";
     String store_name;
     String email;
     String username;
@@ -57,7 +52,6 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        //Fragment selectedFragment = null;
         int id = getIntent().getIntExtra("id", 0);
         ApiInterface apiInterface = RetrofitClient.getRetrofitInstance().create(ApiInterface.class);
         Call<AkurAccount> call = apiInterface.getAkurAccountInfo(id);
@@ -78,17 +72,9 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
 
                     }
                 });
-//                HomeFragment fragment = HomeFragment.newInstance(id);
-//                selectedFragment = fragment;
-//                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-//                        selectedFragment).commit();
                 break;
 
             case R.id.nav_account:
-                Log.d("ID MARIO", "NILAI ID DI NAV ACCOUNT = " + id);
-//                ApiInterface apiInterface = RetrofitClient.getRetrofitInstance().create(ApiInterface.class);
-//                Call<AkurAccount> call = apiInterface.getAkurAccountInfo(id);
-                Log.d("HORE1", "MASUK KE CASE NAV ACCOUNT");
                 call.enqueue(new Callback<AkurAccount>() {
                     @Override
                     public void onResponse(Call<AkurAccount> call, Response<AkurAccount> response) {
@@ -97,7 +83,6 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
                         store_name = account.getStoreName();
                         email = account.getEmail();
                         username = account.getUsername();
-//                        int id = getIntent().getIntExtra("id", 0);
                         if(store_name == null){
                             store_name = username;
                         }
@@ -135,9 +120,6 @@ public class MainActivity extends AppCompatActivity implements NavigationBarView
         Intent intent = new Intent(MainActivity.this, ScanActivity.class);
         intent.putExtra("idUser", id);
         startActivity(intent);
-//        FragmentManager fm = getSupportFragmentManager();
-//        HomeFragment fragment = (HomeFragment) fm.findFragmentById(R.id.fragment_container);
-//        fragment.setText();
     }
 
     @Override

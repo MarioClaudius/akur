@@ -59,10 +59,8 @@ public class ChangePasswordActivity extends AppCompatActivity implements View.On
                 @Override
                 public void onResponse(Call<Boolean> call, Response<Boolean> response) {
                     Boolean isSuccess = response.body();
-                    Log.d("SUKSES", "" + isSuccess);
                     if(isSuccess){
                         Toast.makeText(ChangePasswordActivity.this, "Updated Successfully", Toast.LENGTH_SHORT).show();
-                        Log.d("SUKSES1", "MASUK KE TRUE");
                         handler = new Handler();
                         handler.postDelayed(new Runnable() {
                             @Override
@@ -74,7 +72,6 @@ public class ChangePasswordActivity extends AppCompatActivity implements View.On
                     }
                     else{
                         Toast.makeText(ChangePasswordActivity.this, "Update Failed", Toast.LENGTH_SHORT).show();
-                        Log.d("SUKSES1", "MASUK KE FALSE");
                     }
                 }
 
@@ -87,11 +84,6 @@ public class ChangePasswordActivity extends AppCompatActivity implements View.On
         else{
             Toast.makeText(ChangePasswordActivity.this, "Password tidak cocok", Toast.LENGTH_SHORT).show();
         }
-
-//        if((oldPassword.equals(getIntent().getStringExtra("oldPassword"))) && newPassword.equals(confirmPassword)){
-//            Toast.makeText(ChangePasswordActivity.this, "PASSWORD COCOK", Toast.LENGTH_SHORT).show();
-//            AkurAccount a = new AkurAccount();
-//        }
     }
 
     @Override

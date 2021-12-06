@@ -55,7 +55,6 @@ public class HomeFragment extends Fragment {
     private LineChart lineChart;
     private PieChart pieChart;
     private List<Scan> list = new ArrayList<Scan>();
-    private HashMap<String, Integer> map = new HashMap<>();
 
     public HomeFragment(){}
 
@@ -119,9 +118,8 @@ public class HomeFragment extends Fragment {
                                     ArrayList<ILineDataSet> datasets = new ArrayList<>();
                                     ArrayList<Entry> dataVals = new ArrayList<>();
                                     int max = 0;
-                                    int scanToday;
+                                    //int scanToday;
                                     for(int i = 0; i < 7 ; i++){
-//                                        final SimpleDateFormat axisXFormat = new SimpleDateFormat("dd/MM");
                                         int count = 0;
                                         Calendar cal = Calendar.getInstance();
                                         cal.add(Calendar.DATE, -6 + i);
@@ -145,10 +143,7 @@ public class HomeFragment extends Fragment {
                                         if(i == 6){
                                             tvTotalProductToday.setText(count + " Products");
                                         }
-//                                        else {
-                                            dataVals.add(new Entry(i  , count));
-//                                        }
-//                                        dataVals.add(new Entry(i - 0.5f, (float) count));
+                                        dataVals.add(new Entry(i  , count));
                                     }
                                     LineDataSet lineScanDataSet = new LineDataSet(dataVals, "Jumlah Scan");
                                     lineScanDataSet.setLineWidth(5);
@@ -163,7 +158,6 @@ public class HomeFragment extends Fragment {
                                     YAxis yAxis= lineChart.getAxisLeft();
                                     xAxis.setDrawGridLines(false);
                                     xAxis.setGranularity(0.5f);
-//                                    xAxis.setAxisMaximum(7.5f);
                                     yAxis.setGranularity(1);
                                     xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
                                     yAxis.setAxisMinimum(0f);
@@ -196,7 +190,7 @@ public class HomeFragment extends Fragment {
                     });
                     lineChartThread.start();
 
-//                    Algoritma Pie Chart
+                    //Algoritma Pie Chart
                     Thread pieChartThread = new Thread(new Runnable() {
                         @Override
                         public void run() {
@@ -209,9 +203,6 @@ public class HomeFragment extends Fragment {
                                 public void run() {
                                     ArrayList<PieEntry> pieEntries = new ArrayList<>();
                                     ArrayList<Integer> colors = new ArrayList<>();
-//                                    for(int color: ColorTemplate.VORDIPLOM_COLORS){
-//                                        colors.add(color);
-//                                    }
                                     for(int color: ColorTemplate.MATERIAL_COLORS){
                                         colors.add(color);
                                     }
@@ -226,7 +217,6 @@ public class HomeFragment extends Fragment {
                                             }
                                         }
                                         float percentage = (float)count / list.size();
-//                                Log.d("PERCENTAGE", "" + percentage);
                                         if(percentage != 0){
                                             pieEntries.add(new PieEntry(percentage, shipment.getName()));
                                         }
@@ -242,7 +232,6 @@ public class HomeFragment extends Fragment {
                                     pieChart.setDrawHoleEnabled(true);
                                     pieChart.setUsePercentValues(true);
                                     pieChart.setEntryLabelColor(Color.BLACK);
-//                                    pieChart.setCenterText("Shipment Frequently Used");
                                     pieChart.setCenterTextSize(20);
                                     Typeface comfortaa = ResourcesCompat.getFont(getContext(), R.font.comfortaa);
                                     pieChart.setCenterTextTypeface(comfortaa);
