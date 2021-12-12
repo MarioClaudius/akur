@@ -37,11 +37,9 @@ public class ListShipmentAdapter extends RecyclerView.Adapter<ListShipmentAdapte
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked){
-                    Toast.makeText(buttonView.getContext(), "TRUE" + position, Toast.LENGTH_SHORT).show();
                     ShipmentData.shipmentAppear[position] = true;
                 }
                 else {
-                    Toast.makeText(buttonView.getContext(), "FALSE" + position, Toast.LENGTH_SHORT).show();
                     ShipmentData.shipmentAppear[position] = false;
                 }
             }
