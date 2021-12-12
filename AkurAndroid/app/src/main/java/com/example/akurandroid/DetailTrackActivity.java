@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import retrofit2.Call;
@@ -41,6 +42,7 @@ public class DetailTrackActivity extends AppCompatActivity {
             public void onResponse(Call<List<Scan>> call, Response<List<Scan>> response) {
                 if(response.isSuccessful()){
                     list = response.body();
+                    Collections.reverse(list);
                     TextView tvCount = findViewById(R.id.sent_count);
                     tvCount.setText("" + list.size());
                     rvDetailTrack.setLayoutManager(new LinearLayoutManager(getApplicationContext()));

@@ -129,7 +129,6 @@ public class AccountFragment extends Fragment implements View.OnClickListener {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
-                Toast.makeText(getActivity(), "Dialog NO", Toast.LENGTH_SHORT).show();
             }
         });
 

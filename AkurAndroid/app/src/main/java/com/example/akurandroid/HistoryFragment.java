@@ -1,5 +1,6 @@
 package com.example.akurandroid;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,6 +14,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import retrofit2.Call;
@@ -47,6 +50,7 @@ public class HistoryFragment extends Fragment {
             public void onResponse(Call<List<Scan>> call, Response<List<Scan>> response) {
                 if(response.isSuccessful()){
                     list = response.body();
+                    Collections.reverse(list);
                     rvHistory.setLayoutManager(new LinearLayoutManager(v.getContext()));
                     ListScanHistoryAdapter listScanHistoryAdapter = new ListScanHistoryAdapter(list);
                     rvHistory.setAdapter(listScanHistoryAdapter);
