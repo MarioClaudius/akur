@@ -15,3 +15,14 @@ statistik dari pengiriman paket produk.
 
 ## Library yang digunakan</br>
 1. <a href="https://github.com/square/retrofit">Retrofit (REST API Library)</a>
+2. <a href="https://github.com/zxing/zxing">Zxing (QR & Barcode Scanner)</a>
+3. <a href="https://github.com/PhilJay/MPAndroidChart">MPAndroidChart (Statistic Chart Viewer)</a>
+
+## Cara instalasi
+1. Clone source code
+2. Jalankan pada Android Studio dan lakukan build gradle
+3. Aplikasi dapat disimulasikan pada AVD atau perangkat Android secara langsung
+4. Enjoy the application!!
+
+##Link instalasi apk
+<a href="https://drive.google.com/drive/u/0/my-drive">Click Here!</a>
